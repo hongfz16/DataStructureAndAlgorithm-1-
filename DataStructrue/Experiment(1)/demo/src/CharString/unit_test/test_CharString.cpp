@@ -5,6 +5,7 @@ using namespace std;
 
 int main()
 {
+	/*
 	CharString testcs('a');
 	testcs.print(cout);
 	CharString testcs1('a',10);
@@ -27,5 +28,9 @@ int main()
 	css.print(cout);
 	cs.append(css);
 	cs.print(cout);
+	*/
+	CharString testcs("1234798798234782345asdfasdfqw345234345");
+	CharString target("aaabaaaa");
+	cout<<testcs.indexOf(target,0)<<endl;
 	return 0;
 }

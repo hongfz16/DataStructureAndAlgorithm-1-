@@ -2,7 +2,7 @@
 #define _CHARSTRING_H_
 
 #include <string>
-using std::sting;
+using std::string;
 
 class CharString
 {
@@ -32,7 +32,7 @@ public:
 
 private:
 	static int init_size;
-	static int delta_Size;
+	static int delta_size;
 	int size; //capability
 	int num; //length
 	char* base;

@@ -1,9 +1,9 @@
 #include <iostream>
 #include "CharString.h"
 
-CharString::init_size=1000;
+int CharString::init_size=1000;
 
-CharString::delta_size=10;
+int CharString::delta_size=10;
 
 CharString::CharString()
 {
@@ -63,7 +63,71 @@ CharString::~CharString()
 
 int CharString::indexOf(CharString& targetString,int pos)
 {
-	//TODO
+	if(pos<0 || pos>=num)
+	{
+		std::cerr<<"Out of range!"<<std::endl;
+		throw;
+	}
+	//get next[]
+	int targetSize=targetString.getSize();
+	int* next=new int[targetSize+1];
+	next[0]=-1;
+	int j=0,k=-1;
+	while(j<targetSize)
+	{
+		if(k==-1 || targetString.getIndex(j)==targetString.getIndex(k))
+		{
+			++j;
+			++k;
+			next[j]=k;
+		}
+		else
+			k=next[k];
+	}
+	
+	for(int i=0;i<targetSize+1;++i)
+	{
+		std::cout<<next[i];
+	}
+	std::cout<<std::endl;
+	
+	j=1;
+	while(j<targetSize)
+	{
+		k=next[j];
+		if(targetString.getIndex(j)==targetString.getIndex(k))
+		{
+			next[j]=next[k];
+		}
+		++j;
+	}
+	/*
+	for(int i=0;i<targetSize+1;++i)
+	{
+		std::cout<<next[i];
+	}
+	std::cout<<std::endl;
+	*/
+	//KMP
+	int i=pos;
+	j=0;
+	while(i<num && j<targetSize)
+	{
+		if(j==-1 || getIndex(i)==targetString.getIndex(j))
+		{
+			++i;
+			++j;
+		}
+		else
+		{
+			j=next[j];
+		}
+	}
+	delete[] next;
+	if(j>=targetSize)
+		return i-targetSize;
+	else
+		return -1;
 }
 
 CharString* CharString::subString(int pos,int len)
@@ -89,6 +153,7 @@ CharString* CharString::concat(CharString& targetString)
 		reString->append(base[i]);
 	}
 	reString->append(targetString);
+	return reString;
 }
 
 void CharString::assign(CharString& targetString)
@@ -98,9 +163,9 @@ void CharString::assign(CharString& targetString)
 		delete base;
 		size=targetString.getSize();
 		base=new char[size];
-		num=size;
+		num=0;
 	}
-	for(int i=0;i<num;++i)
+	for(int i=0;i<targetString.getSize();++i)
 	{
 		append(targetString.getIndex(i));
 	}
