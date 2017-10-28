@@ -30,7 +30,8 @@ int main()
 	cs.print(cout);
 	*/
 	CharString testcs("1234798798234782345asdfasdfqw345234345");
-	CharString target("aaabaaaa");
-	cout<<testcs.indexOf(target,0)<<endl;
+	//CharString target("aaabaaaa");
+	//cout<<testcs.indexOf(target,0)<<endl;
+	cout<<testcs<<endl;
 	return 0;
 }

@@ -289,3 +289,12 @@ void CharString::clear()
 {
 	num=0;
 }
+
+std::ostream& operator<<(std::ostream& out,CharString& obj)
+{
+	for(int i=0;i<obj.getSize();++i)
+	{
+		out<<obj.base[i];
+	}
+	return out;
+}

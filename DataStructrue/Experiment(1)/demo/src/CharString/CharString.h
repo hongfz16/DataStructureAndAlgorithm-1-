@@ -1,6 +1,7 @@
 #ifndef _CHARSTRING_H_
 #define _CHARSTRING_H_
 
+#include <iostream>
 #include <string>
 using std::string;
 
@@ -29,6 +30,8 @@ public:
 	void print(std::ostream& os);
 	bool empty();
 	void clear();
+
+	friend std::ostream& operator<<(std::ostream& out,CharString& obj);
 
 private:
 	static int init_size;
