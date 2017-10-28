@@ -8,36 +8,91 @@ using std::string;
 class CharString
 {
 public:
+
+	/**********构造函数、析构函数**********/
+
+	//默认构造函数，预留1000个位置
 	CharString();
+	
+	//重载构造函数1，构造出包含一个给定字符的字符串
 	CharString(char init);
+	
+	//重载构造函数2，构造出包含num个给定字符的字符串
 	CharString(char init,int num);
+	
+	//重载构造函数3，使用string类型初始化
 	CharString(string& init);
+	
+	//重载构造函数4，使用char*初始化
 	CharString(char* init);
+	
+	//析构函数，释放base指向的空间
 	~CharString();
 
+	/**********文档要求实现的函数**********/
+	
+	//返回从pos开始的第一个匹配targetString的位置的index（pos从0开始数，以下表示index的都是从0开始数）
 	int indexOf(CharString& targetString,int pos);
+	
+	//返回从pos位置开始长度为len的字符串的指针（包含第pos个）
 	CharString* subString(int pos,int len);
+
+	//将targetString连接到本身之后，返回一个连接好的字符串的指针，这个操作并不会改变本身或者targetString
 	CharString* concat(CharString& targetString);
+
+	//赋值，将targetString赋值给this
 	void assign(CharString& targetString);
 
+
+	/**********其他函数**********/
+
+	//将c加入到本字符串末尾
 	void append(char c);
+
+	//将c字符串接到本字符串末尾
 	void append(char* c);
+
+	//将string接到本字符串末尾
 	void append(string& s);
+
+	//将CharString字符串加到本字符串末尾
 	void append(CharString& cs);
+
+	//返回第index个字符
 	char getIndex(int index);
+	
+	//返回字符串长度
 	int getSize();
+
+	//返回字符串预留长度
 	int getCapability();
+	
+	//打印字符串
 	void print(std::ostream& os);
+	
+	//如果字符串为空就返回true，不为空返回false
 	bool empty();
+	
+	//清空字符串
 	void clear();
 
+	//重载标准输出流操作符
 	friend std::ostream& operator<<(std::ostream& out,CharString& obj);
 
 private:
+	//未指定长度时的默认长度
 	static int init_size;
+
+	//每次需要扩展长度的时候增加的size
 	static int delta_size;
-	int size; //capability
-	int num; //length
+
+	//预留的空间
+	int size;
+	
+	//字符串长度
+	int num;
+	
+	//指向字符串的指针
 	char* base;
 
 };

@@ -7,20 +7,46 @@ template<class T>
 class Stack
 {
 public:
+	/**********构造函数和析构函数**********/
+
+	//初始化栈，初始栈空间大小为1000
 	Stack();
+	
+	//释放栈空间
 	~Stack();
 
+	/********** **********/
+
+	//向栈顶添加元素
 	void push(T ele);
+	
+	//弹出一个元素
 	void pop();
+	
+	//返回栈顶元素
 	T top();
+	
+	//如果栈为空返回true，否则返回false
 	bool empty();
 
 private:
+
+	//指向栈底的指针
 	T* base;
+	
+	//指向栈顶上面一个位置的指针
 	T* ptrtop;
+	
+	//栈当前的容量
 	int size;
+	
+	//栈内元素的数量
 	int num;
+
+	//初始化时分配给栈的空间
 	static int init_size;
+	
+	//每次栈需要扩大的时候空间的增量
 	static int delta_size;
 };
 

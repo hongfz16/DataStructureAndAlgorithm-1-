@@ -3,35 +3,74 @@
 
 #include <iostream>
 
+//双向循环链表模板，含有不存储任何信息的头结点
 template<class T>
 class Link
 {
 public:
+
+	/**********构造函数与析构函数**********/
+	
+	//初始化操作，将prev和next指针指向自己
 	Link();
+	
+	//析构函数，采用递归的方式释放空间
 	~Link();
 
-	//required
+	/**********要求实现的函数**********/
+	
+	//向链表最后添加一个节点
 	void add(T& elem);
+	
+	//将第index个节点删除
 	T remove(int index);
+	
+	//将rm指向的节点删除
 	T remove(Link* rm);
+	
+	//查找链表中是否有值等于target的节点，如果有就返回该节点指针，否则返回nullptr
 	Link* search(T& target);
 
-	//only head can use
+	/**********其他函数（只允许头结点调用）**********/
+	
+	//在pos节点之前插入一个节点，元素为elem
 	void insert(Link* pos,T& elem);
+	
+	//返回第index个节点的指针
 	Link* getNode(int index);
+	
+	//清空链表，释放多余空间
 	void clear();
+	
+	//如果链表为空返回true，否则返回false
 	bool empty();
+	
+	//返回链表长度
 	int getSize();
+	
+	//打印链表
 	void printLink(std::ostream& os);
 
-	//node can use
+	/**********其他函数（除了头结点之外的节点可以调用）**********/
+	
+	//返回当前节点存储的数据
 	T getElem();
+	
+	//返回当前节点前一个节点的指针
 	Link* getPrev();
+	
+	//返回当前节点后一个节点的指针
 	Link* getNext();
 
 private:
+
+	//当前节点存储的信息
 	T elem;
+	
+	//前一个节点的指针
 	Link* prev;
+	
+	//后一个节点的指针
 	Link* next;
 
 };
