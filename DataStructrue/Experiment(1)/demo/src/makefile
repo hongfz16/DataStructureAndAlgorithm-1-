@@ -1,11 +1,11 @@
-encodetest: encode_test.o CharString.o
-	g++ -o encodetest encode_test.o CharString.o
+extract: extract_key_words.o CharString.o
+	g++ -o extract extract_key_words.o CharString.o
 
-encode_test.o: encode_test.cpp ./CharString/CharString.h
-	g++ -c encode_test.cpp
+extract_key_words: extract_key_words.cpp CharString/CharString.h
+	g++ -c extract_key_words.cpp
 
-CharString.o: CharString/CharString.cpp ./CharString/CharString.h
+CharString.o: CharString/CharString.cpp CharString/CharString.h
 	g++ -c CharString/CharString.cpp
 
 clean:
-	rm encodetest encode_test.o CharString.o
+	rm extract extract_key_words.o CharString.o

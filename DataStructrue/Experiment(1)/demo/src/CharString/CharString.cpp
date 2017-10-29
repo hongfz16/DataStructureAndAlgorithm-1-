@@ -130,7 +130,7 @@ int CharString::indexOf(CharString& targetString,int pos)
 		return -1;
 }
 
-CharString* CharString::subString(int pos,int len)
+CharString CharString::subString(int pos,int len)
 {
 	if(pos+len>num || pos<0 || len<0)
 	{
@@ -142,7 +142,7 @@ CharString* CharString::subString(int pos,int len)
 	{
 		reString->append(base[pos+i]);
 	}
-	return reString;
+	return *reString;
 }
 
 CharString* CharString::concat(CharString& targetString)
@@ -288,6 +288,30 @@ bool CharString::empty()
 void CharString::clear()
 {
 	num=0;
+}
+
+bool CharString::is_equal(CharString target)
+{
+	if(num!=target.getSize())
+		return false;
+	for(int i=0;i<num;++i)
+	{
+		if(base[i]!=target.getIndex(i))
+			return false;
+	}
+	return true;
+}
+
+bool CharString::is_equal(string target)
+{
+	if(num!=target.length())
+		return false;
+	for(int i=0;i<num;++i)
+	{
+		if(base[i]!=target[i])
+			return false;
+	}
+	return true;
 }
 
 std::ostream& operator<<(std::ostream& out,CharString& obj)

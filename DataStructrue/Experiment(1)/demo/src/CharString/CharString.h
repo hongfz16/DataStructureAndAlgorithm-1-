@@ -34,8 +34,8 @@ public:
 	//返回从pos开始的第一个匹配targetString的位置的index（pos从0开始数，以下表示index的都是从0开始数）
 	int indexOf(CharString& targetString,int pos);
 	
-	//返回从pos位置开始长度为len的字符串的指针（包含第pos个）
-	CharString* subString(int pos,int len);
+	//返回从pos位置开始长度为len的字符串（包含第pos个）
+	CharString subString(int pos,int len);
 
 	//将targetString连接到本身之后，返回一个连接好的字符串的指针，这个操作并不会改变本身或者targetString
 	CharString* concat(CharString& targetString);
@@ -75,6 +75,12 @@ public:
 	
 	//清空字符串
 	void clear();
+
+	//如果两字符串相同返回true，否则返回false
+	bool is_equal(CharString target);
+
+	//上一个函数的string重载版本
+	bool is_equal(string target);
 
 	//重载标准输出流操作符
 	friend std::ostream& operator<<(std::ostream& out,CharString& obj);
