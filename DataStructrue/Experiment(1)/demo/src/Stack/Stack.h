@@ -68,7 +68,7 @@ Stack<T>::Stack()
 template<class T>
 Stack<T>::~Stack()
 {
-	delete base;
+	delete[] base;
 }
 
 template<class T>
@@ -85,7 +85,7 @@ void Stack<T>::push(T ele)
 		base=new_base;
 		size+=delta_size;
 	}
-	*ptrtop=ele;
+	base[num]=ele;
 	++ptrtop;
 	++num;
 }
@@ -110,7 +110,7 @@ T Stack<T>::top()
 		std::cerr<<"Stack empty!"<<std::endl;
 		throw;
 	}
-	return *(ptrtop-1);
+	return base[num-1];
 }
 
 template<class T>

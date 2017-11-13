@@ -30,8 +30,15 @@ int main()
 	cs.print(cout);
 	*/
 	CharString testcs("1234798798234782345asdfasdfqw345234345");
+	if(1)
+	{
+		CharString* test=new CharString("asdfasdf");
+		cout<<*test<<endl;
+		delete test;
+	}
+	cout<<"here"<<endl;
 	//CharString target("aaabaaaa");
 	//cout<<testcs.indexOf(target,0)<<endl;
-	cout<<testcs<<endl;
+	//cout<<testcopy<<endl;
 	return 0;
 }

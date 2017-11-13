@@ -56,9 +56,25 @@ CharString::CharString(char* init)
 	}
 }
 
+CharString::CharString(const CharString& cs)
+{
+	int _num=cs.getSize();
+	base=new char[_num];
+	num=_num;
+	size=_num;
+	for(int i=0;i<num;++i)
+	{
+		base[i]=cs.getIndex(i);
+	}
+}
+
 CharString::~CharString()
 {
-	delete base;
+	if(base!=NULL)
+	{
+		delete[] base;
+		base=NULL;
+	}
 }
 
 int CharString::indexOf(CharString& targetString,int pos)
@@ -84,13 +100,13 @@ int CharString::indexOf(CharString& targetString,int pos)
 		else
 			k=next[k];
 	}
-	
+	/*
 	for(int i=0;i<targetSize+1;++i)
 	{
 		std::cout<<next[i];
 	}
 	std::cout<<std::endl;
-	
+	*/
 	j=1;
 	while(j<targetSize)
 	{
@@ -137,12 +153,12 @@ CharString CharString::subString(int pos,int len)
 		std::cerr<<"Out of range"<<std::endl;
 		throw;
 	}
-	CharString* reString=new CharString();
+	CharString reString;
 	for(int i=0;i<len;++i)
 	{
-		reString->append(base[pos+i]);
+		reString.append(base[pos+i]);
 	}
-	return *reString;
+	return reString;
 }
 
 CharString* CharString::concat(CharString& targetString)
@@ -160,7 +176,7 @@ void CharString::assign(CharString& targetString)
 {
 	if(size<targetString.getSize())
 	{
-		delete base;
+		delete[] base;
 		size=targetString.getSize();
 		base=new char[size];
 		num=0;
@@ -180,8 +196,9 @@ void CharString::append(char c)
 		{
 			newChar[i]=base[i];
 		}
-		delete base;
+		delete[] base;
 		base=newChar;
+		size=size+delta_size;
 	}
 	base[num]=c;
 	++num;
@@ -198,8 +215,9 @@ void CharString::append(char* c)
 		{
 			newChar[i]=base[i];
 		}
-		delete base;
+		delete[] base;
 		base=newChar;
+		size=num+count+delta_size;
 	}
 	for(int i=num;i<num+count;++i)
 	{
@@ -210,7 +228,7 @@ void CharString::append(char* c)
 
 void CharString::append(string& c)
 {
-	int count=c.length();
+	int count=static_cast<int>(c.length());
 	if(num+count>size)
 	{
 		char* newChar=new char[num+count+delta_size];
@@ -218,8 +236,9 @@ void CharString::append(string& c)
 		{
 			newChar[i]=base[i];
 		}
-		delete base;
+		delete[] base;
 		base=newChar;
+		size=num+count+delta_size;
 	}
 	for(int i=num;i<num+count;++i)
 	{
@@ -238,8 +257,9 @@ void CharString::append(CharString& cs)
 		{
 			newChar[i]=base[i];
 		}
-		delete base;
+		delete[] base;
 		base=newChar;
+		size=num+count+delta_size;
 	}
 	for(int i=num;i<num+count;++i)
 	{
@@ -248,7 +268,7 @@ void CharString::append(CharString& cs)
 	num+=count;
 }
 
-char CharString::getIndex(int index)
+char CharString::getIndex(int index) const
 {
 	if(index>=num || index<0)
 	{
@@ -258,12 +278,12 @@ char CharString::getIndex(int index)
 	return base[index];
 }
 
-int CharString::getSize()
+int CharString::getSize() const
 {
 	return num;
 }
 
-int CharString::getCapability()
+int CharString::getCapability() const
 {
 	return size;
 }
@@ -313,6 +333,26 @@ bool CharString::is_equal(string target)
 	}
 	return true;
 }
+
+CharString &CharString::operator=(const CharString &other) { 
+	if(this==&other)
+		return *this;
+	if(base!=NULL)
+	{
+		delete[] base;
+	}
+	int m_size=other.getSize();
+	base=new char[m_size];
+	size=m_size;
+	num=m_size;
+	for(int i=0;i<size;++i)
+	{
+		base[i]=other.getIndex(i);
+	}
+	return *this;
+}
+
+
 
 std::ostream& operator<<(std::ostream& out,CharString& obj)
 {

@@ -26,6 +26,10 @@ public:
 	//重载构造函数4，使用char*初始化
 	CharString(char* init);
 	
+	
+	//拷贝构造函数
+	CharString(const CharString& cs);
+	
 	//析构函数，释放base指向的空间
 	~CharString();
 
@@ -59,13 +63,13 @@ public:
 	void append(CharString& cs);
 
 	//返回第index个字符
-	char getIndex(int index);
+	char getIndex(int index) const;
 	
 	//返回字符串长度
-	int getSize();
+	int getSize() const;
 
 	//返回字符串预留长度
-	int getCapability();
+	int getCapability() const;
 	
 	//打印字符串
 	void print(std::ostream& os);
@@ -84,6 +88,9 @@ public:
 
 	//重载标准输出流操作符
 	friend std::ostream& operator<<(std::ostream& out,CharString& obj);
+	
+	//赋值函数
+	CharString& operator=(const CharString& other);
 
 private:
 	//未指定长度时的默认长度

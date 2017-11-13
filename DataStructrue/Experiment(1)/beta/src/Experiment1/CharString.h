@@ -89,13 +89,16 @@ public:
 	//重载标准输出流操作符
 	friend std::ostream& operator<<(std::ostream& out,CharString& obj);
 	
-	//赋值函数
+	//重载赋值运算符
 	CharString& operator=(const CharString& other);
 
+	//重载相等运算符
 	bool operator == (const CharString& other) const;
 
+	//重载小于运算符
 	bool operator < (const CharString& other) const;
 
+	//打印字符串
 	void print_CharString(std::ostream& os);
 
 private:
