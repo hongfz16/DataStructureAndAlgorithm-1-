@@ -20,7 +20,7 @@ wordSegmentation::wordSegmentation(string filename,string super_filename)
 		temp.clear();
 		fin>>temp;
 		CharString cs(temp); 
-		dic.insert(cs);
+		//dic.insert(cs);
 	}
 	fin.close();
 	ifstream sfin(super_filename);
@@ -77,7 +77,8 @@ Link<CharString>* wordSegmentation::max_back_segment(CharString& incstring,int m
 		{
 			if(i-length*2+1<0) cout<<"divide word error"<<endl;
 			CharString sub=incstring.subString(i-length*2+1,length*2);
-			if(super_dic.find(sub)!=super_dic.end())
+
+			if(super_dic.find(sub) != super_dic.end())
 			{
 				if(relink->empty())
 					relink->add(sub);

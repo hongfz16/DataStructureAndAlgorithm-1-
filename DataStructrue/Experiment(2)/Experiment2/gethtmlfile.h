@@ -8,7 +8,7 @@ public:
 	getHtmlFile();
 	~getHtmlFile(){}
 
-	void getUrl(QString _url);
+	void getUrl(QString _url, QString filename);
 };
 
 #endif // GETHTMLFILE_H

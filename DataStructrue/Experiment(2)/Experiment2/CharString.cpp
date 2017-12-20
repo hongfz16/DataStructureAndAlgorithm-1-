@@ -367,13 +367,13 @@ bool CharString::operator == (const CharString& other) const
 
 bool CharString::operator < (const CharString& other) const
 {
-	int i_min=size;
-	if(other.size<i_min)
-		i_min=other.size;
+	int i_min=num;
+	if(other.num<i_min)
+		i_min=other.num;
 	for(int i=0;i<i_min;++i)
 		if(base[i]<other.base[i]) return true;
 		else if(base[i]>other.base[i]) return false;
-	return size<other.size;
+	return num<other.num;
 }
 
 void CharString::print_CharString(std::ostream& os)

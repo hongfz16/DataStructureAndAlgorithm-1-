@@ -16,6 +16,7 @@
 #include <fstream>
 #include "CharString.h"
 #include "Link.h"
+#include "pageinfo.h"
 
 using namespace std;
 
@@ -34,7 +35,7 @@ public:
 	//分词接口
 	Link<CharString>* divideWords(CharString& incstring,int max);
 
-private:
+//private:
 	//存储普通词典的词条
 	set<CharString> dic;
 

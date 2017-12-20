@@ -52,10 +52,20 @@ OBJECTS_DIR   = ./
 
 SOURCES       = ../Experiment2/main.cpp \
 		../Experiment2/mainwindow.cpp \
-		../Experiment2/gethtmlfile.cpp moc_mainwindow.cpp
+		../Experiment2/gethtmlfile.cpp \
+		../Experiment2/CharString.cpp \
+		../Experiment2/extractKeyWords.cpp \
+		../Experiment2/UnicodeToGBK.cpp \
+		../Experiment2/wordSegmentation.cpp \
+		../Experiment2/pageinfo.cpp moc_mainwindow.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		gethtmlfile.o \
+		CharString.o \
+		extractKeyWords.o \
+		UnicodeToGBK.o \
+		wordSegmentation.o \
+		pageinfo.o \
 		moc_mainwindow.o
 DIST          = /Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/features/spec_pre.prf \
 		/Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/qdevice.pri \
@@ -215,6 +225,7 @@ DIST          = /Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/features/spec_pre.prf \
 		/Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/features/qt_config.prf \
 		/Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/macx-clang/qmake.conf \
 		/Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/features/spec_post.prf \
+		../Experiment2/.qmake.stash \
 		/Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/features/exclusive_builds.prf \
 		/Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/features/mac/sdk.prf \
 		/Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/features/toolchain.prf \
@@ -242,9 +253,22 @@ DIST          = /Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/features/spec_pre.prf \
 		/Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/features/yacc.prf \
 		/Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/features/lex.prf \
 		../Experiment2/Experiment2.pro ../Experiment2/mainwindow.h \
-		../Experiment2/gethtmlfile.h ../Experiment2/main.cpp \
+		../Experiment2/gethtmlfile.h \
+		../Experiment2/Link.h \
+		../Experiment2/mAVL.h \
+		../Experiment2/Stack.h \
+		../Experiment2/UnicodeToGBK.h \
+		../Experiment2/wordSegmentation.h \
+		../Experiment2/CharString.h \
+		../Experiment2/extractKeyWords.h \
+		../Experiment2/pageinfo.h ../Experiment2/main.cpp \
 		../Experiment2/mainwindow.cpp \
-		../Experiment2/gethtmlfile.cpp
+		../Experiment2/gethtmlfile.cpp \
+		../Experiment2/CharString.cpp \
+		../Experiment2/extractKeyWords.cpp \
+		../Experiment2/UnicodeToGBK.cpp \
+		../Experiment2/wordSegmentation.cpp \
+		../Experiment2/pageinfo.cpp
 QMAKE_TARGET  = Experiment2
 DESTDIR       = 
 TARGET        = Experiment2.app/Contents/MacOS/Experiment2
@@ -420,6 +444,7 @@ Makefile: ../Experiment2/Experiment2.pro /Users/hongfz/Qt5/5.9.1/clang_64/mkspec
 		/Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/features/qt_config.prf \
 		/Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/macx-clang/qmake.conf \
 		/Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/features/exclusive_builds.prf \
 		/Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/features/mac/sdk.prf \
 		/Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/features/toolchain.prf \
@@ -610,6 +635,7 @@ Makefile: ../Experiment2/Experiment2.pro /Users/hongfz/Qt5/5.9.1/clang_64/mkspec
 /Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/features/qt_config.prf:
 /Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/macx-clang/qmake.conf:
 /Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/features/exclusive_builds.prf:
 /Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/features/mac/sdk.prf:
 /Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/features/toolchain.prf:
@@ -671,8 +697,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../Experiment2/mainwindow.h ../Experiment2/gethtmlfile.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../Experiment2/main.cpp ../Experiment2/mainwindow.cpp ../Experiment2/gethtmlfile.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../Experiment2/mainwindow.h ../Experiment2/gethtmlfile.h ../Experiment2/Link.h ../Experiment2/mAVL.h ../Experiment2/Stack.h ../Experiment2/UnicodeToGBK.h ../Experiment2/wordSegmentation.h ../Experiment2/CharString.h ../Experiment2/extractKeyWords.h ../Experiment2/pageinfo.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../Experiment2/main.cpp ../Experiment2/mainwindow.cpp ../Experiment2/gethtmlfile.cpp ../Experiment2/CharString.cpp ../Experiment2/extractKeyWords.cpp ../Experiment2/UnicodeToGBK.cpp ../Experiment2/wordSegmentation.cpp ../Experiment2/pageinfo.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../Experiment2/mainwindow.ui $(DISTDIR)/
 
 
@@ -683,6 +709,7 @@ clean: compiler_clean
 
 distclean: clean 
 	-$(DEL_FILE) -r Experiment2.app
+	-$(DEL_FILE) .qmake.stash
 	-$(DEL_FILE) Makefile
 
 
@@ -740,7 +767,20 @@ main.o: ../Experiment2/main.cpp ../Experiment2/mainwindow.h \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/QApplication \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/qapplication.h \
-		../Experiment2/gethtmlfile.h
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/QTextCodec \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/qtextcodec.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/QDebug \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		../Experiment2/gethtmlfile.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/QString \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		../Experiment2/UnicodeToGBK.h \
+		../Experiment2/extractKeyWords.h \
+		../Experiment2/wordSegmentation.h \
+		../Experiment2/CharString.h \
+		../Experiment2/Link.h \
+		../Experiment2/pageinfo.h \
+		../Experiment2/Stack.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../Experiment2/main.cpp
 
 mainwindow.o: ../Experiment2/mainwindow.cpp ../Experiment2/mainwindow.h \
@@ -750,6 +790,8 @@ mainwindow.o: ../Experiment2/mainwindow.cpp ../Experiment2/mainwindow.h \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../Experiment2/mainwindow.cpp
 
 gethtmlfile.o: ../Experiment2/gethtmlfile.cpp ../Experiment2/gethtmlfile.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/QString \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/qstring.h \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtNetwork.framework/Headers/QtNetwork \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtNetwork.framework/Headers/qtnetworkglobal.h \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtNetwork.framework/Headers/qabstractnetworkcache.h \
@@ -794,6 +836,32 @@ gethtmlfile.o: ../Experiment2/gethtmlfile.cpp ../Experiment2/gethtmlfile.h \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/QTextCodec \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/qtextcodec.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o gethtmlfile.o ../Experiment2/gethtmlfile.cpp
+
+CharString.o: ../Experiment2/CharString.cpp ../Experiment2/CharString.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o CharString.o ../Experiment2/CharString.cpp
+
+extractKeyWords.o: ../Experiment2/extractKeyWords.cpp ../Experiment2/extractKeyWords.h \
+		../Experiment2/UnicodeToGBK.h \
+		../Experiment2/wordSegmentation.h \
+		../Experiment2/CharString.h \
+		../Experiment2/Link.h \
+		../Experiment2/pageinfo.h \
+		../Experiment2/Stack.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o extractKeyWords.o ../Experiment2/extractKeyWords.cpp
+
+UnicodeToGBK.o: ../Experiment2/UnicodeToGBK.cpp ../Experiment2/UnicodeToGBK.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o UnicodeToGBK.o ../Experiment2/UnicodeToGBK.cpp
+
+wordSegmentation.o: ../Experiment2/wordSegmentation.cpp ../Experiment2/wordSegmentation.h \
+		../Experiment2/CharString.h \
+		../Experiment2/Link.h \
+		../Experiment2/pageinfo.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o wordSegmentation.o ../Experiment2/wordSegmentation.cpp
+
+pageinfo.o: ../Experiment2/pageinfo.cpp ../Experiment2/pageinfo.h \
+		../Experiment2/CharString.h \
+		../Experiment2/Link.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o pageinfo.o ../Experiment2/pageinfo.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

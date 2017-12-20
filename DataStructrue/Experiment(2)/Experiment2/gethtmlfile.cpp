@@ -40,7 +40,7 @@ getHtmlFile::getHtmlFile()
 	*/
 }
 
-void getHtmlFile::getUrl(QString _url)
+void getHtmlFile::getUrl(QString _url,QString filename)
 {
 	QTextCodec *gbk = QTextCodec::codecForName("gb18030");
 	QTextCodec::setCodecForLocale(gbk);
@@ -48,12 +48,12 @@ void getHtmlFile::getUrl(QString _url)
 	//QCoreApplication a(argc, argv);
 	const QString URLSTR = _url;//"http://bbs.cehome.com/thread-1174881-1-1.html";
 	//储存网页代码的文件
-	const QString FILE_NAME = "test.html";
+	const QString FILE_NAME = filename;
 
 	QUrl url(URLSTR);
 	QNetworkAccessManager manager;
 	QEventLoop loop;
-	qDebug() << "Reading code form " << URLSTR;
+	//qDebug() << "Reading code form " << URLSTR;
 	//发出请求
 	QNetworkReply *reply = manager.get(QNetworkRequest(url));
 	//请求结束并下载完成后，退出子事件循环
@@ -73,6 +73,6 @@ void getHtmlFile::getUrl(QString _url)
 	out << code << endl;
 	file.close();
 
-	qDebug() << "Finished, the code have written to " << FILE_NAME;
+	//qDebug() << "Finished, the code have written to " << FILE_NAME;
 
 }

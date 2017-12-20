@@ -8,12 +8,11 @@
 */
 
 #ifndef _EXTRACT_KEY_WORDS_
-#define _EXTRACK_KEY_WORDS_
+#define _EXTRACT_KEY_WORDS_
 
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <Windows.h>
 
 #include "UnicodeToGBK.h"
 #include "wordSegmentation.h"

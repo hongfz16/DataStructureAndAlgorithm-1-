@@ -787,7 +787,6 @@ void print_info(CharString* info,int _size,ofstream& os,wordSegmentation& dic,Un
 	os<<" ";
 	Link<CharString>* seg=dic.max_back_segment(info[3],8);
 	seg->printLink(os);
-	//cout<<seg->getSize()<<endl;
 }
 
 void extractInfo(CharString* info,string filename)
