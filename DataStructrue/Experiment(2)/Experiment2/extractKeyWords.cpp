@@ -602,7 +602,7 @@ void traverse_html(Stack<label>& m_stack,CharString& html,CharString* info)
 	}
 }
 
-void print_info(CharString* info,int _size,ofstream& os,wordSegmentation& dic,UnicodeToGBK& u2g)
+void print_info(CharString* info,int _size,ofstream& os,wordSegmentation& dic,UnicodeToGBK& u2g,pageInfo pinfo)
 {
 	for(int i=0;i<_size-1;++i)
 	{
@@ -688,7 +688,9 @@ void print_info(CharString* info,int _size,ofstream& os,wordSegmentation& dic,Un
 					}
 				}
 				info[3]=newinfo3;
+#ifdef NEED_PRINT
 				os<<info[i]<<",";
+#endif
 				continue;
 			}
 			int size=info[3].getSize();
@@ -747,12 +749,18 @@ void print_info(CharString* info,int _size,ofstream& os,wordSegmentation& dic,Un
 			}
 			CharString info3_replace(replace);
 			info[3]=info3_replace;
+#ifdef NEED_PRINT
 			os<<info[3]<<",";
+#endif
 			continue;
 		}
+#ifdef NEED_PRINT
 		os<<info[i]<<",";
+#endif
 	}
+#ifdef NEED_PRINT
 	os<<info[_size-1]<<",";
+#endif
 	CharString newinfo2;
 	for(int i=0;i<info[2].getSize();)
 	{
@@ -783,10 +791,19 @@ void print_info(CharString* info,int _size,ofstream& os,wordSegmentation& dic,Un
 	}
 	info[2]=newinfo2;
 	Link<CharString>* title_seg=dic.max_back_segment(info[2],8);
+#ifdef NEED_PRINT
 	title_seg->printLink(os);
 	os<<" ";
+#endif
 	Link<CharString>* seg=dic.max_back_segment(info[3],8);
+#ifdef NEED_PRINT
 	seg->printLink(os);
+#endif
+
+	pinfo.setTexts(info[3]);
+	pinfo.setTitle(info[2]);
+	pinfo.setWordCount(title_seg);
+	pinfo.setWordCount(seg);
 }
 
 void extractInfo(CharString* info,string filename)
@@ -805,7 +822,7 @@ void extractInfo(CharString* info,string filename)
 	traverse_html(m_stack,html,info);
 }
 
-void extractKeyWords(string inputfilename,string outputfilename,string url,int count,wordSegmentation& dic,UnicodeToGBK& u2g)
+void extractKeyWords(string inputfilename,string outputfilename,string url,int count,wordSegmentation& dic,UnicodeToGBK& u2g,pageInfo& pinfo)
 {
 	CharString info[7];
 	string filename(inputfilename);
@@ -813,7 +830,7 @@ void extractKeyWords(string inputfilename,string outputfilename,string url,int c
 	ofstream fout;
 	fout.open(outputfilename,ios::app);
 	fout<<count<<","<<url<<",";
-	print_info(info,7,fout,dic,u2g);
+	print_info(info,7,fout,dic,u2g,pinfo);
 	fout<<endl;
 	fout.close();
 	cout<<"Finish processing the "<<count<<"th file!"<<endl;

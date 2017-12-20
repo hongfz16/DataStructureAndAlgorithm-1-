@@ -32,7 +32,8 @@ CharString.cpp \
 extractKeyWords.cpp \
 UnicodeToGBK.cpp \
 wordSegmentation.cpp \
-    pageinfo.cpp
+    pageinfo.cpp \
+    pagelink.cpp
 
 
 HEADERS += \
@@ -45,7 +46,8 @@ UnicodeToGBK.h \
 wordSegmentation.h \
 CharString.h \
 extractKeyWords.h \
-    pageinfo.h
+    pageinfo.h \
+    pagelink.h
 
 
 FORMS += \
