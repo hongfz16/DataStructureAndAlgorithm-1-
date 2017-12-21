@@ -11,6 +11,9 @@
 #include "Link.h"
 #include "pageinfo.h"
 #include "mAVL.h"
+#include "pagelink.h"
+#include "inverteddocs.h"
+#include "doclink.h"
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -22,10 +25,10 @@ using namespace std;
 #define CACHE_ALL_PAGES
 //#define ONLINE_PROCESSING
 
-void readFromCsvAndOutput(string csvfilename,string outputfilename,vector<pageInfo>& pinfo)
+void readFromCsvAndOutput(string csvfilename,string outputfilename,vector<pageInfo>& pinfo,wordSegmentation& dic)
 {
 	getHtmlFile gethtml;
-	wordSegmentation dic("./config/dictionary.dic","./config/specific.dic");
+	//wordSegmentation dic("./config/dictionary.dic","./config/specific.dic");
 	UnicodeToGBK u2g;
 	qDebug()<<"Load Complete!";
 	ifstream fin(csvfilename);
@@ -54,7 +57,7 @@ void readFromCsvAndOutput(string csvfilename,string outputfilename,vector<pageIn
 		QString qurl=QString::fromStdString(surl);
 		gethtml.getUrl(qurl,qinpfile);
 #endif
-		qDebug()<<"Start processing file...";
+		cout<<"Start processing file..."<<endl;
 
 		pageInfo pi;
 		CharString csurl(surl);
@@ -63,6 +66,7 @@ void readFromCsvAndOutput(string csvfilename,string outputfilename,vector<pageIn
 		pi.setId(count);
 		pi.setUrl(csurl);
 		pinfo.push_back(pi);
+
 	}
 }
 
@@ -87,7 +91,43 @@ void mydebug()
 	//fout<<endl;//<<"after print"<<endl;
 }
 
-void buildTree(vector<pageInfo>& pinfo)
+void buildTree(vector<pageInfo>& pinfo,mAVL<CharString,Link<pageLink> >* st)
+{
+	bool taller=false;
+	bool success=false;
+	for(int i=0;i<pinfo.size();++i)
+	{
+		vector<pair<CharString,int> >& wordCount=pinfo[i].getWordCount();
+		CharString texts=pinfo[i].getTexts();
+		CharString title=pinfo[i].getTitle();
+		CharString url=pinfo[i].getUrl();
+		int id=pinfo[i].getId();
+		pageLink pl;
+		pl.setUrl(url);
+		pl.setTexts(texts);
+		pl.setTitle(title);
+		pl.setId(id);
+		for(int j=0;j<wordCount.size();++j)
+		{
+			CharString k=wordCount[j].first;
+			mAVL<CharString,Link<pageLink> > *tn=Insert(st,k,taller,success);
+			pl.setNum(wordCount[j].second);
+			Link<pageLink>& link=tn->editData();
+			Link<pageLink>* p=link.getNext();
+			while(p!=&link)
+			{
+				if(p->getElem().getNum()<pl.getNum())
+				{
+					break;
+				}
+				p=p->getNext();
+			}
+			link.insert(p,pl);
+		}
+	}
+}
+
+void searchForWords(vector<CharString>& wl,mAVL<CharString,Link<pageLink> >* st)
 {
 
 }
@@ -97,8 +137,11 @@ int main(int argc, char *argv[])
 	QApplication a(argc, argv);
 
 	std::locale::global(std::locale("zh_CN.GB18030"));
+
 	MainWindow w;
 	w.show();
+
+	wordSegmentation dic("./config/dictionary.dic","./config/specific.dic");
 
 	string filename="./input/url.csv";
 	string outfilename="./output/result.csv";
@@ -110,10 +153,15 @@ int main(int argc, char *argv[])
 	fout.close();
 
 	vector<pageInfo> pageinfos;
-	readFromCsvAndOutput(filename,outfilename,pageinfos);
+	readFromCsvAndOutput(filename,outfilename,pageinfos,dic);
 
+	cout<<"Start building the tree"<<endl;
+	invertedDocs idocs(pageinfos,&dic);
+	cout<<"Finish building the tree!"<<endl;
 
-
+	cout<<"Start Batch Search"<<endl;
+	idocs.batchSearch("query.txt","./output/result.txt");
+	cout<<"End Batch Search"<<endl;
 
 	return a.exec();
 }

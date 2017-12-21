@@ -20,7 +20,7 @@ wordSegmentation::wordSegmentation(string filename,string super_filename)
 		temp.clear();
 		fin>>temp;
 		CharString cs(temp); 
-		//dic.insert(cs);
+		dic.insert(cs);
 	}
 	fin.close();
 	ifstream sfin(super_filename);

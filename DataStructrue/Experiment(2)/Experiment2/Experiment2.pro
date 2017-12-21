@@ -33,7 +33,9 @@ extractKeyWords.cpp \
 UnicodeToGBK.cpp \
 wordSegmentation.cpp \
     pageinfo.cpp \
-    pagelink.cpp
+    pagelink.cpp \
+    inverteddocs.cpp \
+    doclink.cpp
 
 
 HEADERS += \
@@ -47,7 +49,9 @@ wordSegmentation.h \
 CharString.h \
 extractKeyWords.h \
     pageinfo.h \
-    pagelink.h
+    pagelink.h \
+    inverteddocs.h \
+    doclink.h
 
 
 FORMS += \

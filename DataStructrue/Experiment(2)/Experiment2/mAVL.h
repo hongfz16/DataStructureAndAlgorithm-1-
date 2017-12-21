@@ -1,3 +1,6 @@
+#ifndef _MAVL_H_
+#define _MAVL_H_
+
 #include <iostream>
 using namespace std;
 
@@ -340,3 +343,4 @@ public:
 	int& editBf() {return bf;}
 };
 
+#endif

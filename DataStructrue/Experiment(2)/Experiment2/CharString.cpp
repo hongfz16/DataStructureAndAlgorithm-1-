@@ -376,6 +376,14 @@ bool CharString::operator < (const CharString& other) const
 	return num<other.num;
 }
 
+bool CharString::operator >(const CharString &other) const
+{
+	if(other < *this)
+		return true;
+	else
+		return false;
+}
+
 void CharString::print_CharString(std::ostream& os)
 {
 	os<<(*this);

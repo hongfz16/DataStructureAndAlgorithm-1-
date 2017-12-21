@@ -58,7 +58,9 @@ SOURCES       = ../Experiment2/main.cpp \
 		../Experiment2/UnicodeToGBK.cpp \
 		../Experiment2/wordSegmentation.cpp \
 		../Experiment2/pageinfo.cpp \
-		../Experiment2/pagelink.cpp moc_mainwindow.cpp
+		../Experiment2/pagelink.cpp \
+		../Experiment2/inverteddocs.cpp \
+		../Experiment2/doclink.cpp moc_mainwindow.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		gethtmlfile.o \
@@ -68,6 +70,8 @@ OBJECTS       = main.o \
 		wordSegmentation.o \
 		pageinfo.o \
 		pagelink.o \
+		inverteddocs.o \
+		doclink.o \
 		moc_mainwindow.o
 DIST          = /Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/features/spec_pre.prf \
 		/Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/qdevice.pri \
@@ -264,7 +268,9 @@ DIST          = /Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/features/spec_pre.prf \
 		../Experiment2/CharString.h \
 		../Experiment2/extractKeyWords.h \
 		../Experiment2/pageinfo.h \
-		../Experiment2/pagelink.h ../Experiment2/main.cpp \
+		../Experiment2/pagelink.h \
+		../Experiment2/inverteddocs.h \
+		../Experiment2/doclink.h ../Experiment2/main.cpp \
 		../Experiment2/mainwindow.cpp \
 		../Experiment2/gethtmlfile.cpp \
 		../Experiment2/CharString.cpp \
@@ -272,7 +278,9 @@ DIST          = /Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/features/spec_pre.prf \
 		../Experiment2/UnicodeToGBK.cpp \
 		../Experiment2/wordSegmentation.cpp \
 		../Experiment2/pageinfo.cpp \
-		../Experiment2/pagelink.cpp
+		../Experiment2/pagelink.cpp \
+		../Experiment2/inverteddocs.cpp \
+		../Experiment2/doclink.cpp
 QMAKE_TARGET  = Experiment2
 DESTDIR       = 
 TARGET        = Experiment2.app/Contents/MacOS/Experiment2
@@ -701,8 +709,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../Experiment2/mainwindow.h ../Experiment2/gethtmlfile.h ../Experiment2/Link.h ../Experiment2/mAVL.h ../Experiment2/Stack.h ../Experiment2/UnicodeToGBK.h ../Experiment2/wordSegmentation.h ../Experiment2/CharString.h ../Experiment2/extractKeyWords.h ../Experiment2/pageinfo.h ../Experiment2/pagelink.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../Experiment2/main.cpp ../Experiment2/mainwindow.cpp ../Experiment2/gethtmlfile.cpp ../Experiment2/CharString.cpp ../Experiment2/extractKeyWords.cpp ../Experiment2/UnicodeToGBK.cpp ../Experiment2/wordSegmentation.cpp ../Experiment2/pageinfo.cpp ../Experiment2/pagelink.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../Experiment2/mainwindow.h ../Experiment2/gethtmlfile.h ../Experiment2/Link.h ../Experiment2/mAVL.h ../Experiment2/Stack.h ../Experiment2/UnicodeToGBK.h ../Experiment2/wordSegmentation.h ../Experiment2/CharString.h ../Experiment2/extractKeyWords.h ../Experiment2/pageinfo.h ../Experiment2/pagelink.h ../Experiment2/inverteddocs.h ../Experiment2/doclink.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../Experiment2/main.cpp ../Experiment2/mainwindow.cpp ../Experiment2/gethtmlfile.cpp ../Experiment2/CharString.cpp ../Experiment2/extractKeyWords.cpp ../Experiment2/UnicodeToGBK.cpp ../Experiment2/wordSegmentation.cpp ../Experiment2/pageinfo.cpp ../Experiment2/pagelink.cpp ../Experiment2/inverteddocs.cpp ../Experiment2/doclink.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../Experiment2/mainwindow.ui $(DISTDIR)/
 
 
@@ -785,7 +793,8 @@ main.o: ../Experiment2/main.cpp ../Experiment2/mainwindow.h \
 		../Experiment2/Link.h \
 		../Experiment2/pageinfo.h \
 		../Experiment2/Stack.h \
-		../Experiment2/mAVL.h
+		../Experiment2/mAVL.h \
+		../Experiment2/pagelink.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../Experiment2/main.cpp
 
 mainwindow.o: ../Experiment2/mainwindow.cpp ../Experiment2/mainwindow.h \
@@ -868,8 +877,18 @@ pageinfo.o: ../Experiment2/pageinfo.cpp ../Experiment2/pageinfo.h \
 		../Experiment2/Link.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o pageinfo.o ../Experiment2/pageinfo.cpp
 
-pagelink.o: ../Experiment2/pagelink.cpp ../Experiment2/pagelink.h
+pagelink.o: ../Experiment2/pagelink.cpp ../Experiment2/pagelink.h \
+		../Experiment2/CharString.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o pagelink.o ../Experiment2/pagelink.cpp
+
+inverteddocs.o: ../Experiment2/inverteddocs.cpp ../Experiment2/inverteddocs.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o inverteddocs.o ../Experiment2/inverteddocs.cpp
+
+doclink.o: ../Experiment2/doclink.cpp ../Experiment2/doclink.h \
+		../Experiment2/Link.h \
+		../Experiment2/CharString.h \
+		../Experiment2/pagelink.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o doclink.o ../Experiment2/doclink.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

@@ -107,6 +107,8 @@ public:
 	//重载小于运算符
 	bool operator < (const CharString& other) const;
 
+	bool operator > (const CharString& other) const;
+
 	//输出字符串
 	void print_CharString(std::ostream& os);
 

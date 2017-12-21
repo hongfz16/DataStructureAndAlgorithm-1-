@@ -49,7 +49,7 @@ int find_type(Stack<label>& m_stack,CharString& html,int pos,CharString* info);
 void traverse_html(Stack<label>& m_stack,CharString& html,CharString* info);
 
 //提取信息结束后将info内的信息以csv格式输出，并实现部分网页内容的转码，以及将分词结果输出
-void print_info(CharString* info, int _size, ofstream& os, wordSegmentation& dic, UnicodeToGBK& u2g, pageInfo pinfo);
+void print_info(CharString* info, int _size, ofstream& os, wordSegmentation& dic, UnicodeToGBK& u2g, pageInfo &pinfo);
 
 //初始化html文本内容，调用traverse_html函数
 void extractInfo(CharString* info,string filename);

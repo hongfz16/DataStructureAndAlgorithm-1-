@@ -19,6 +19,8 @@ using namespace std;
 //6 "发帖类型" 全文唯一一个<div class="ts z h1">里面第一个<a>
 //"分词结果"
 
+#define NEED_PRINT
+
 class label
 {
 public:
@@ -602,7 +604,7 @@ void traverse_html(Stack<label>& m_stack,CharString& html,CharString* info)
 	}
 }
 
-void print_info(CharString* info,int _size,ofstream& os,wordSegmentation& dic,UnicodeToGBK& u2g,pageInfo pinfo)
+void print_info(CharString* info,int _size,ofstream& os,wordSegmentation& dic,UnicodeToGBK& u2g,pageInfo& pinfo)
 {
 	for(int i=0;i<_size-1;++i)
 	{
@@ -804,6 +806,9 @@ void print_info(CharString* info,int _size,ofstream& os,wordSegmentation& dic,Un
 	pinfo.setTitle(info[2]);
 	pinfo.setWordCount(title_seg);
 	pinfo.setWordCount(seg);
+
+	delete title_seg;
+	delete seg;
 }
 
 void extractInfo(CharString* info,string filename)
