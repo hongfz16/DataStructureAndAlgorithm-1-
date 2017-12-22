@@ -21,6 +21,7 @@ detailedPage::detailedPage(QWidget *parent) : QWidget(parent)
 void detailedPage::setId(int _id)
 {
 	id=_id;
+	textb->clear();
 	pageInfo pi=wo->getPageInfo(id);
 	string stdtitle=pi.getTitle().csToStdString();
 	string stdtext=pi.getTexts().csToStdString();
