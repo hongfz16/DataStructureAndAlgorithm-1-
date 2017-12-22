@@ -12,10 +12,10 @@ MAKEFILE      = Makefile
 
 CC            = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
 CXX           = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
-DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB
+DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_WEBENGINEWIDGETS_LIB -DQT_WEBENGINECORE_LIB -DQT_QUICK_LIB -DQT_PRINTSUPPORT_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_WEBCHANNEL_LIB -DQT_QML_LIB -DQT_NETWORK_LIB -DQT_POSITIONING_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -g $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk -mmacosx-version-min=10.10 -Wall -W -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -stdlib=libc++ -g -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk -mmacosx-version-min=10.10 -Wall -W -fPIC $(DEFINES)
-INCPATH       = -I../Experiment2 -I. -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtGui.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtNetwork.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/AGL.framework/Headers -I. -I/Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/macx-clang -F/Users/hongfz/Qt5/5.9.1/clang_64/lib
+INCPATH       = -I../Experiment2 -I. -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWebEngineWidgets.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWebEngineCore.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtQuick.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtPrintSupport.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtGui.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWebChannel.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtQml.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtNetwork.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtPositioning.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/AGL.framework/Headers -I. -I/Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/macx-clang -F/Users/hongfz/Qt5/5.9.1/clang_64/lib
 QMAKE         = /Users/hongfz/Qt5/5.9.1/clang_64/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -38,7 +38,7 @@ DISTNAME      = Experiment21.0.0
 DISTDIR = /Users/hongfz/Github/DataStructrueAndAlgorithm(1)/DataStructrue/Experiment(2)/build-Experiment2-Desktop_Qt_5_9_1_clang_64bit-Debug/.tmp/Experiment21.0.0
 LINK          = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
 LFLAGS        = -stdlib=libc++ -headerpad_max_install_names $(EXPORT_ARCH_ARGS) -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk -mmacosx-version-min=10.10 -Wl,-rpath,@executable_path/Frameworks -Wl,-rpath,/Users/hongfz/Qt5/5.9.1/clang_64/lib
-LIBS          = $(SUBLIBS) -F/Users/hongfz/Qt5/5.9.1/clang_64/lib -framework QtWidgets -framework QtGui -framework QtCore -framework DiskArbitration -framework IOKit -framework QtNetwork -framework OpenGL -framework AGL 
+LIBS          = $(SUBLIBS) -F/Users/hongfz/Qt5/5.9.1/clang_64/lib -framework QtWebEngineWidgets -framework QtWebEngineCore -framework QtQuick -framework QtQml -framework QtNetwork -framework QtCore -framework DiskArbitration -framework IOKit -framework QtGui -framework QtWebChannel -framework QtPositioning -framework QtPrintSupport -framework QtWidgets -framework OpenGL -framework AGL 
 AR            = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar cq
 RANLIB        = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib -s
 SED           = sed
@@ -63,10 +63,12 @@ SOURCES       = ../Experiment2/main.cpp \
 		../Experiment2/doclink.cpp \
 		../Experiment2/woogle.cpp \
 		../Experiment2/initpage.cpp \
-		../Experiment2/searchpage.cpp moc_mainwindow.cpp \
+		../Experiment2/searchpage.cpp \
+		../Experiment2/detailedpage.cpp moc_mainwindow.cpp \
 		moc_woogle.cpp \
 		moc_initpage.cpp \
-		moc_searchpage.cpp
+		moc_searchpage.cpp \
+		moc_detailedpage.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		gethtmlfile.o \
@@ -81,10 +83,12 @@ OBJECTS       = main.o \
 		woogle.o \
 		initpage.o \
 		searchpage.o \
+		detailedpage.o \
 		moc_mainwindow.o \
 		moc_woogle.o \
 		moc_initpage.o \
-		moc_searchpage.o
+		moc_searchpage.o \
+		moc_detailedpage.o
 DIST          = /Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/features/spec_pre.prf \
 		/Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/qdevice.pri \
 		/Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/features/device_config.prf \
@@ -285,7 +289,8 @@ DIST          = /Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/features/spec_pre.prf \
 		../Experiment2/doclink.h \
 		../Experiment2/woogle.h \
 		../Experiment2/initpage.h \
-		../Experiment2/searchpage.h ../Experiment2/main.cpp \
+		../Experiment2/searchpage.h \
+		../Experiment2/detailedpage.h ../Experiment2/main.cpp \
 		../Experiment2/mainwindow.cpp \
 		../Experiment2/gethtmlfile.cpp \
 		../Experiment2/CharString.cpp \
@@ -298,7 +303,8 @@ DIST          = /Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/features/spec_pre.prf \
 		../Experiment2/doclink.cpp \
 		../Experiment2/woogle.cpp \
 		../Experiment2/initpage.cpp \
-		../Experiment2/searchpage.cpp
+		../Experiment2/searchpage.cpp \
+		../Experiment2/detailedpage.cpp
 QMAKE_TARGET  = Experiment2
 DESTDIR       = 
 TARGET        = Experiment2.app/Contents/MacOS/Experiment2
@@ -502,9 +508,16 @@ Makefile: ../Experiment2/Experiment2.pro /Users/hongfz/Qt5/5.9.1/clang_64/mkspec
 		/Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/features/yacc.prf \
 		/Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/features/lex.prf \
 		../Experiment2/Experiment2.pro \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWebEngineWidgets.framework/QtWebEngineWidgets.prl \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWebEngineCore.framework/QtWebEngineCore.prl \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtQuick.framework/QtQuick.prl \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtPrintSupport.framework/QtPrintSupport.prl \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/QtWidgets.prl \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtGui.framework/QtGui.prl \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWebChannel.framework/QtWebChannel.prl \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtQml.framework/QtQml.prl \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtNetwork.framework/QtNetwork.prl \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtPositioning.framework/QtPositioning.prl \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/QtCore.prl
 	$(QMAKE) -o Makefile ../Experiment2/Experiment2.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug
 /Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/features/spec_pre.prf:
@@ -693,9 +706,16 @@ Makefile: ../Experiment2/Experiment2.pro /Users/hongfz/Qt5/5.9.1/clang_64/mkspec
 /Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/features/yacc.prf:
 /Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/features/lex.prf:
 ../Experiment2/Experiment2.pro:
+/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWebEngineWidgets.framework/QtWebEngineWidgets.prl:
+/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWebEngineCore.framework/QtWebEngineCore.prl:
+/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtQuick.framework/QtQuick.prl:
+/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtPrintSupport.framework/QtPrintSupport.prl:
 /Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/QtWidgets.prl:
 /Users/hongfz/Qt5/5.9.1/clang_64/lib/QtGui.framework/QtGui.prl:
+/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWebChannel.framework/QtWebChannel.prl:
+/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtQml.framework/QtQml.prl:
 /Users/hongfz/Qt5/5.9.1/clang_64/lib/QtNetwork.framework/QtNetwork.prl:
+/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtPositioning.framework/QtPositioning.prl:
 /Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/QtCore.prl:
 qmake: FORCE
 	@$(QMAKE) -o Makefile ../Experiment2/Experiment2.pro -spec macx-clang CONFIG+=debug CONFIG+=x86_64 CONFIG+=qml_debug
@@ -727,8 +747,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../Experiment2/mainwindow.h ../Experiment2/gethtmlfile.h ../Experiment2/Link.h ../Experiment2/mAVL.h ../Experiment2/Stack.h ../Experiment2/UnicodeToGBK.h ../Experiment2/wordSegmentation.h ../Experiment2/CharString.h ../Experiment2/extractKeyWords.h ../Experiment2/pageinfo.h ../Experiment2/pagelink.h ../Experiment2/inverteddocs.h ../Experiment2/doclink.h ../Experiment2/woogle.h ../Experiment2/initpage.h ../Experiment2/searchpage.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../Experiment2/main.cpp ../Experiment2/mainwindow.cpp ../Experiment2/gethtmlfile.cpp ../Experiment2/CharString.cpp ../Experiment2/extractKeyWords.cpp ../Experiment2/UnicodeToGBK.cpp ../Experiment2/wordSegmentation.cpp ../Experiment2/pageinfo.cpp ../Experiment2/pagelink.cpp ../Experiment2/inverteddocs.cpp ../Experiment2/doclink.cpp ../Experiment2/woogle.cpp ../Experiment2/initpage.cpp ../Experiment2/searchpage.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../Experiment2/mainwindow.h ../Experiment2/gethtmlfile.h ../Experiment2/Link.h ../Experiment2/mAVL.h ../Experiment2/Stack.h ../Experiment2/UnicodeToGBK.h ../Experiment2/wordSegmentation.h ../Experiment2/CharString.h ../Experiment2/extractKeyWords.h ../Experiment2/pageinfo.h ../Experiment2/pagelink.h ../Experiment2/inverteddocs.h ../Experiment2/doclink.h ../Experiment2/woogle.h ../Experiment2/initpage.h ../Experiment2/searchpage.h ../Experiment2/detailedpage.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../Experiment2/main.cpp ../Experiment2/mainwindow.cpp ../Experiment2/gethtmlfile.cpp ../Experiment2/CharString.cpp ../Experiment2/extractKeyWords.cpp ../Experiment2/UnicodeToGBK.cpp ../Experiment2/wordSegmentation.cpp ../Experiment2/pageinfo.cpp ../Experiment2/pagelink.cpp ../Experiment2/inverteddocs.cpp ../Experiment2/doclink.cpp ../Experiment2/woogle.cpp ../Experiment2/initpage.cpp ../Experiment2/searchpage.cpp ../Experiment2/detailedpage.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../Experiment2/mainwindow.ui $(DISTDIR)/
 
 
@@ -761,18 +781,18 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/features/data/dummy.cpp
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -pipe -stdlib=libc++ -g -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk -mmacosx-version-min=10.10 -Wall -W -dM -E -o moc_predefs.h /Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_mainwindow.cpp moc_woogle.cpp moc_initpage.cpp moc_searchpage.cpp
+compiler_moc_header_make_all: moc_mainwindow.cpp moc_woogle.cpp moc_initpage.cpp moc_searchpage.cpp moc_detailedpage.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainwindow.cpp moc_woogle.cpp moc_initpage.cpp moc_searchpage.cpp
+	-$(DEL_FILE) moc_mainwindow.cpp moc_woogle.cpp moc_initpage.cpp moc_searchpage.cpp moc_detailedpage.cpp
 moc_mainwindow.cpp: /Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/QMainWindow \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/QStackedLayout \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/qstackedlayout.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
 		../Experiment2/initpage.h \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/QObject \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/qobject.h \
-		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/QWidget \
-		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/QLabel \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
@@ -811,10 +831,16 @@ moc_mainwindow.cpp: /Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Hea
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/QListWidget \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/qlistwidget.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/QTextDecoder \
+		../Experiment2/detailedpage.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWebEngineWidgets.framework/Headers/QWebEngineView \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWebEngineWidgets.framework/Headers/qwebengineview.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/QUrl \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/qurl.h \
 		../Experiment2/mainwindow.h \
 		moc_predefs.h \
 		/Users/hongfz/Qt5/5.9.1/clang_64/bin/moc
-	/Users/hongfz/Qt5/5.9.1/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/macx-clang -I'/Users/hongfz/Github/DataStructrueAndAlgorithm(1)/DataStructrue/Experiment(2)/Experiment2' -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtGui.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtNetwork.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/hongfz/Qt5/5.9.1/clang_64/lib ../Experiment2/mainwindow.h -o moc_mainwindow.cpp
+	/Users/hongfz/Qt5/5.9.1/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/macx-clang -I'/Users/hongfz/Github/DataStructrueAndAlgorithm(1)/DataStructrue/Experiment(2)/Experiment2' -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWebEngineWidgets.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWebEngineCore.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtQuick.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtPrintSupport.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtGui.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWebChannel.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtQml.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtNetwork.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtPositioning.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/hongfz/Qt5/5.9.1/clang_64/lib ../Experiment2/mainwindow.h -o moc_mainwindow.cpp
 
 moc_woogle.cpp: /Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/QString \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/qstring.h \
@@ -845,7 +871,7 @@ moc_woogle.cpp: /Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/QS
 		../Experiment2/woogle.h \
 		moc_predefs.h \
 		/Users/hongfz/Qt5/5.9.1/clang_64/bin/moc
-	/Users/hongfz/Qt5/5.9.1/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/macx-clang -I'/Users/hongfz/Github/DataStructrueAndAlgorithm(1)/DataStructrue/Experiment(2)/Experiment2' -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtGui.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtNetwork.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/hongfz/Qt5/5.9.1/clang_64/lib ../Experiment2/woogle.h -o moc_woogle.cpp
+	/Users/hongfz/Qt5/5.9.1/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/macx-clang -I'/Users/hongfz/Github/DataStructrueAndAlgorithm(1)/DataStructrue/Experiment(2)/Experiment2' -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWebEngineWidgets.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWebEngineCore.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtQuick.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtPrintSupport.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtGui.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWebChannel.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtQml.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtNetwork.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtPositioning.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/hongfz/Qt5/5.9.1/clang_64/lib ../Experiment2/woogle.h -o moc_woogle.cpp
 
 moc_initpage.cpp: /Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/QObject \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/qobject.h \
@@ -887,7 +913,7 @@ moc_initpage.cpp: /Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/
 		../Experiment2/initpage.h \
 		moc_predefs.h \
 		/Users/hongfz/Qt5/5.9.1/clang_64/bin/moc
-	/Users/hongfz/Qt5/5.9.1/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/macx-clang -I'/Users/hongfz/Github/DataStructrueAndAlgorithm(1)/DataStructrue/Experiment(2)/Experiment2' -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtGui.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtNetwork.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/hongfz/Qt5/5.9.1/clang_64/lib ../Experiment2/initpage.h -o moc_initpage.cpp
+	/Users/hongfz/Qt5/5.9.1/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/macx-clang -I'/Users/hongfz/Github/DataStructrueAndAlgorithm(1)/DataStructrue/Experiment(2)/Experiment2' -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWebEngineWidgets.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWebEngineCore.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtQuick.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtPrintSupport.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtGui.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWebChannel.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtQml.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtNetwork.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtPositioning.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/hongfz/Qt5/5.9.1/clang_64/lib ../Experiment2/initpage.h -o moc_initpage.cpp
 
 moc_searchpage.cpp: /Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/QObject \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/qobject.h \
@@ -901,10 +927,79 @@ moc_searchpage.cpp: /Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Header
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/qlistwidget.h \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/QTextCodec \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/qtextcodec.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/QTextDecoder \
+		../Experiment2/woogle.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/QString \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/QTextBrowser \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/qtextbrowser.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/QProgressBar \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/qprogressbar.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/QThread \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/qthread.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/QMutex \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/qmutex.h \
+		../Experiment2/gethtmlfile.h \
+		../Experiment2/UnicodeToGBK.h \
+		../Experiment2/extractKeyWords.h \
+		../Experiment2/wordSegmentation.h \
+		../Experiment2/CharString.h \
+		../Experiment2/Link.h \
+		../Experiment2/pageinfo.h \
+		../Experiment2/Stack.h \
+		../Experiment2/mAVL.h \
+		../Experiment2/pagelink.h \
+		../Experiment2/inverteddocs.h \
+		../Experiment2/doclink.h \
 		../Experiment2/searchpage.h \
 		moc_predefs.h \
 		/Users/hongfz/Qt5/5.9.1/clang_64/bin/moc
-	/Users/hongfz/Qt5/5.9.1/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/macx-clang -I'/Users/hongfz/Github/DataStructrueAndAlgorithm(1)/DataStructrue/Experiment(2)/Experiment2' -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtGui.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtNetwork.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/hongfz/Qt5/5.9.1/clang_64/lib ../Experiment2/searchpage.h -o moc_searchpage.cpp
+	/Users/hongfz/Qt5/5.9.1/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/macx-clang -I'/Users/hongfz/Github/DataStructrueAndAlgorithm(1)/DataStructrue/Experiment(2)/Experiment2' -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWebEngineWidgets.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWebEngineCore.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtQuick.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtPrintSupport.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtGui.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWebChannel.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtQml.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtNetwork.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtPositioning.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/hongfz/Qt5/5.9.1/clang_64/lib ../Experiment2/searchpage.h -o moc_searchpage.cpp
+
+moc_detailedpage.cpp: /Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/QObject \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/QGridLayout \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/qgridlayout.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/QTextBrowser \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/qtextbrowser.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWebEngineWidgets.framework/Headers/QWebEngineView \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWebEngineWidgets.framework/Headers/qwebengineview.h \
+		../Experiment2/woogle.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/QString \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/QTextCodec \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/qtextcodec.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/QProgressBar \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/qprogressbar.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/QThread \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/qthread.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/QMutex \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/qmutex.h \
+		../Experiment2/gethtmlfile.h \
+		../Experiment2/UnicodeToGBK.h \
+		../Experiment2/extractKeyWords.h \
+		../Experiment2/wordSegmentation.h \
+		../Experiment2/CharString.h \
+		../Experiment2/Link.h \
+		../Experiment2/pageinfo.h \
+		../Experiment2/Stack.h \
+		../Experiment2/mAVL.h \
+		../Experiment2/pagelink.h \
+		../Experiment2/inverteddocs.h \
+		../Experiment2/doclink.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/QUrl \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/qurl.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/QTextDecoder \
+		../Experiment2/detailedpage.h \
+		moc_predefs.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/bin/moc
+	/Users/hongfz/Qt5/5.9.1/clang_64/bin/moc $(DEFINES) --include ./moc_predefs.h -I/Users/hongfz/Qt5/5.9.1/clang_64/mkspecs/macx-clang -I'/Users/hongfz/Github/DataStructrueAndAlgorithm(1)/DataStructrue/Experiment(2)/Experiment2' -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWebEngineWidgets.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWebEngineCore.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtQuick.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtPrintSupport.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtGui.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWebChannel.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtQml.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtNetwork.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtPositioning.framework/Headers -I/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/9.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/usr/include -F/Users/hongfz/Qt5/5.9.1/clang_64/lib ../Experiment2/detailedpage.h -o moc_detailedpage.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -932,11 +1027,11 @@ main.o: ../Experiment2/main.cpp ../Experiment2/mainwindow.h \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/QStackedLayout \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/qstackedlayout.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
 		../Experiment2/initpage.h \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/QObject \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/qobject.h \
-		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/QWidget \
-		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/QLabel \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
@@ -975,6 +1070,12 @@ main.o: ../Experiment2/main.cpp ../Experiment2/mainwindow.h \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/QListWidget \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/qlistwidget.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/QTextDecoder \
+		../Experiment2/detailedpage.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWebEngineWidgets.framework/Headers/QWebEngineView \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWebEngineWidgets.framework/Headers/qwebengineview.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/QUrl \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/qurl.h \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/QApplication \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/qapplication.h \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/QDebug \
@@ -986,11 +1087,11 @@ mainwindow.o: ../Experiment2/mainwindow.cpp ../Experiment2/mainwindow.h \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/QStackedLayout \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/qstackedlayout.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
 		../Experiment2/initpage.h \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/QObject \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/qobject.h \
-		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/QWidget \
-		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/QLabel \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/qlabel.h \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
@@ -1029,6 +1130,12 @@ mainwindow.o: ../Experiment2/mainwindow.cpp ../Experiment2/mainwindow.h \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/qlineedit.h \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/QListWidget \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/qlistwidget.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/QTextDecoder \
+		../Experiment2/detailedpage.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWebEngineWidgets.framework/Headers/QWebEngineView \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWebEngineWidgets.framework/Headers/qwebengineview.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/QUrl \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/qurl.h \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../Experiment2/mainwindow.cpp
 
@@ -1207,8 +1314,75 @@ searchpage.o: ../Experiment2/searchpage.cpp ../Experiment2/searchpage.h \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/QListWidget \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/qlistwidget.h \
 		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
-		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/QTextCodec \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/qtextcodec.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/QTextDecoder \
+		../Experiment2/woogle.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/QString \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/QTextBrowser \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/qtextbrowser.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/QProgressBar \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/qprogressbar.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/QThread \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/qthread.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/QMutex \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/qmutex.h \
+		../Experiment2/gethtmlfile.h \
+		../Experiment2/UnicodeToGBK.h \
+		../Experiment2/extractKeyWords.h \
+		../Experiment2/wordSegmentation.h \
+		../Experiment2/CharString.h \
+		../Experiment2/Link.h \
+		../Experiment2/pageinfo.h \
+		../Experiment2/Stack.h \
+		../Experiment2/mAVL.h \
+		../Experiment2/pagelink.h \
+		../Experiment2/inverteddocs.h \
+		../Experiment2/doclink.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o searchpage.o ../Experiment2/searchpage.cpp
+
+detailedpage.o: ../Experiment2/detailedpage.cpp ../Experiment2/detailedpage.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/QObject \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/qobject.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/QWidget \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/QGridLayout \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/qgridlayout.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/QTextBrowser \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/qtextbrowser.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/QPushButton \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/qpushbutton.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWebEngineWidgets.framework/Headers/QWebEngineView \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWebEngineWidgets.framework/Headers/qwebengineview.h \
+		../Experiment2/woogle.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/QString \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/QTextCodec \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/qtextcodec.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/QProgressBar \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtWidgets.framework/Headers/qprogressbar.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/QThread \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/qthread.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/QMutex \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/qmutex.h \
+		../Experiment2/gethtmlfile.h \
+		../Experiment2/UnicodeToGBK.h \
+		../Experiment2/extractKeyWords.h \
+		../Experiment2/wordSegmentation.h \
+		../Experiment2/CharString.h \
+		../Experiment2/Link.h \
+		../Experiment2/pageinfo.h \
+		../Experiment2/Stack.h \
+		../Experiment2/mAVL.h \
+		../Experiment2/pagelink.h \
+		../Experiment2/inverteddocs.h \
+		../Experiment2/doclink.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/QUrl \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/qurl.h \
+		/Users/hongfz/Qt5/5.9.1/clang_64/lib/QtCore.framework/Headers/QTextDecoder
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o detailedpage.o ../Experiment2/detailedpage.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
@@ -1221,6 +1395,9 @@ moc_initpage.o: moc_initpage.cpp
 
 moc_searchpage.o: moc_searchpage.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_searchpage.o moc_searchpage.cpp
+
+moc_detailedpage.o: moc_detailedpage.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_detailedpage.o moc_detailedpage.cpp
 
 ####### Install
 

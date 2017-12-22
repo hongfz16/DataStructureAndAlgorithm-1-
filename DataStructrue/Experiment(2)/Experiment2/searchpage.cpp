@@ -15,6 +15,7 @@ searchPage::searchPage(QWidget *parent) : QWidget(parent)
 	this->setLayout(layout);
 
 	connect(search,SIGNAL(clicked()),this,SLOT(searchButtonClicked()));
+	connect(list,SIGNAL(itemDoubleClicked(QListWidgetItem*)),this,SLOT(pageItemDoubleClicked(QListWidgetItem*)));
 }
 
 void searchPage::setWoogle(woogle *_wo)
@@ -25,6 +26,7 @@ void searchPage::setWoogle(woogle *_wo)
 void searchPage::searchButtonClicked()
 {
 	query=lineedit->text();
+	list->clear();
 	if(query.isEmpty())
 		return;
 	if(wo!=nullptr)
@@ -39,6 +41,17 @@ void searchPage::searchButtonClicked()
 		QByteArray ba(stdtitle.c_str(), stdtitle.length());
 		QString qstitle;
 		qstitle=decoder->toUnicode(ba);
-		list->addItem(qstitle);
+		QListWidgetItem* qlwi=new QListWidgetItem();
+		qlwi->setText(qstitle);
+		qlwi->setData(1,result[i].getId());
+		list->addItem(qlwi);
 	}
+}
+
+void searchPage::pageItemDoubleClicked(QListWidgetItem *item)
+{
+	cout<<"double clicked"<<endl;
+	int id=item->data(1).toInt();
+	emit passInfoToDetailPage(id);
+	emit display(2);
 }

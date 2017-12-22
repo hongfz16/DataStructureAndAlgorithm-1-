@@ -6,6 +6,7 @@
 
 QT       += core gui
 QT += network
+QT += webenginewidgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -38,7 +39,8 @@ wordSegmentation.cpp \
     doclink.cpp \
     woogle.cpp \
     initpage.cpp \
-    searchpage.cpp
+    searchpage.cpp \
+    detailedpage.cpp
 
 
 HEADERS += \
@@ -57,7 +59,8 @@ extractKeyWords.h \
     doclink.h \
     woogle.h \
     initpage.h \
-    searchpage.h
+    searchpage.h \
+    detailedpage.h
 
 
 FORMS += \

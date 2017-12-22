@@ -7,6 +7,7 @@
 #include "initpage.h"
 #include "woogle.h"
 #include "searchpage.h"
+#include "detailedpage.h"
 
 namespace Ui {
 class MainWindow;
@@ -26,6 +27,7 @@ private:
 	QStackedLayout* stacklayout;
 	initPage* initpage;
 	searchPage* searchpage;
+	detailedPage* detailedpage;
 	woogle* wo;
 
 	QWidget* centerwidget;

@@ -43,6 +43,7 @@ public:
 	void init(string _csvfilename,string _outputfilename,bool _reloadHtml);
 	void batchSearch(string inputfilename, string outputfilename);
 	vector<pageInfo> onlineSearch(QString query);
+	pageInfo getPageInfo(int id);
 
 signals:
 	void updataProBar(int);

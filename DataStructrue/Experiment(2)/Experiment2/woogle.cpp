@@ -91,6 +91,8 @@ void woogle::init(string csvfilename, string outputfilename, bool reloadHtml)
 		//proBar->setValue(count+1);
 		emit updataProBar(count+1);
 
+		if(count==100)
+			break;
 
 	}
 
@@ -149,4 +151,15 @@ vector<pageInfo> woogle::onlineSearch(QString query)
 		repi.push_back(pinfo[rawre[i].first-1]);
 	}
 	return repi;
+}
+
+pageInfo woogle::getPageInfo(int id)
+{
+	if(id<=pinfo.size())
+		return pinfo[id-1];
+	else
+	{
+		pageInfo re;
+		return re;
+	}
 }

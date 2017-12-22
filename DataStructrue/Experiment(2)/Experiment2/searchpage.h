@@ -30,6 +30,7 @@ signals:
 
 public slots:
 	void searchButtonClicked();
+	void pageItemDoubleClicked(QListWidgetItem *item);
 
 private:
 	QGridLayout* layout;
