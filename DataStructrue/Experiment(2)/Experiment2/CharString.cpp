@@ -388,3 +388,14 @@ void CharString::print_CharString(std::ostream& os)
 {
 	os<<(*this);
 }
+
+std::string CharString::csToStdString()
+{
+	string re;
+	for(int i=0;i<num;++i)
+	{
+		if(getIndex(i)!=0)
+			re+=getIndex(i);
+	}
+	return re;
+}

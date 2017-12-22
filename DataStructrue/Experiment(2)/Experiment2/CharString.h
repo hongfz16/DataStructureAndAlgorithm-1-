@@ -112,6 +112,8 @@ public:
 	//输出字符串
 	void print_CharString(std::ostream& os);
 
+	string csToStdString();
+
 private:
 	//未指定长度时的默认长度
 	static int init_size;

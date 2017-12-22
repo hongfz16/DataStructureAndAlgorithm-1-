@@ -35,7 +35,10 @@ wordSegmentation.cpp \
     pageinfo.cpp \
     pagelink.cpp \
     inverteddocs.cpp \
-    doclink.cpp
+    doclink.cpp \
+    woogle.cpp \
+    initpage.cpp \
+    searchpage.cpp
 
 
 HEADERS += \
@@ -51,7 +54,10 @@ extractKeyWords.h \
     pageinfo.h \
     pagelink.h \
     inverteddocs.h \
-    doclink.h
+    doclink.h \
+    woogle.h \
+    initpage.h \
+    searchpage.h
 
 
 FORMS += \

@@ -3,25 +3,14 @@
 #include <QTextCodec>
 #include <QDebug>
 
-#include "gethtmlfile.h"
-#include "UnicodeToGBK.h"
-#include "extractKeyWords.h"
-#include "wordSegmentation.h"
-#include "CharString.h"
-#include "Link.h"
-#include "pageinfo.h"
-#include "mAVL.h"
-#include "pagelink.h"
-#include "inverteddocs.h"
-#include "doclink.h"
+#include "woogle.h"
+
 #include <iostream>
 #include <string>
 #include <fstream>
-#include <locale>
-#include <locale.h>
 
 using namespace std;
-
+/*
 #define CACHE_ALL_PAGES
 //#define ONLINE_PROCESSING
 
@@ -126,11 +115,7 @@ void buildTree(vector<pageInfo>& pinfo,mAVL<CharString,Link<pageLink> >* st)
 		}
 	}
 }
-
-void searchForWords(vector<CharString>& wl,mAVL<CharString,Link<pageLink> >* st)
-{
-
-}
+*/
 
 int main(int argc, char *argv[])
 {
@@ -138,10 +123,11 @@ int main(int argc, char *argv[])
 
 	std::locale::global(std::locale("zh_CN.GB18030"));
 
+
 	MainWindow w;
 	w.show();
 
-	wordSegmentation dic("./config/dictionary.dic","./config/specific.dic");
+	//wordSegmentation dic("./config/dictionary.dic","./config/specific.dic");
 
 	string filename="./input/url.csv";
 	string outfilename="./output/result.csv";
@@ -152,16 +138,20 @@ int main(int argc, char *argv[])
 	fout<<firstline<<endl;
 	fout.close();
 
-	vector<pageInfo> pageinfos;
-	readFromCsvAndOutput(filename,outfilename,pageinfos,dic);
+	//vector<pageInfo> pageinfos;
+	//readFromCsvAndOutput(filename,outfilename,pageinfos,dic);
 
-	cout<<"Start building the tree"<<endl;
-	invertedDocs idocs(pageinfos,&dic);
-	cout<<"Finish building the tree!"<<endl;
+	//cout<<"Start building the tree"<<endl;
+	//invertedDocs idocs(pageinfos,&dic);
+	//cout<<"Finish building the tree!"<<endl;
 
-	cout<<"Start Batch Search"<<endl;
-	idocs.batchSearch("query.txt","./output/result.txt");
-	cout<<"End Batch Search"<<endl;
+	//cout<<"Start Batch Search"<<endl;
+	//idocs.batchSearch("query.txt","./output/result.txt");
+	//cout<<"End Batch Search"<<endl;
+
+	//woogle wg;
+	//wg.init(filename,outfilename,false);
+	//wg.batchSearch("query.txt","./output/result.txt");
 
 	return a.exec();
 }
