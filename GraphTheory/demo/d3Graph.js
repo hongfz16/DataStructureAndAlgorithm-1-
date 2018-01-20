@@ -17,7 +17,7 @@ var nodedata = [];
 var link;
 var node;
 var r = 1.5;
-var strokewidth=0.5;
+var strokewidth = 0.5;
 
 d3.json(filmjsonfilename, function(error, graph) {
     if (error) throw error;
@@ -30,6 +30,7 @@ d3.json(filmjsonfilename, function(error, graph) {
         .attr("class", "link")
         .attr("id", function(d) { return "id" + d.source + "_" + d.target; })
         .attr("stroke-opacity", function(d) { return 1; })
+        .attr("stroke", "#000")
         .attr("stroke-width", function(d) { return strokewidth; }); //Math.sqrt(d.value); });
 
     node = svg.selectAll("circle")
@@ -53,8 +54,14 @@ d3.json(filmjsonfilename, function(error, graph) {
     node.on("click", function(d) {
         console.log("on click" + d.id);
         dijkstraApp.setTwoNodes(d.id);
+        showinfo("Node Info:<br>id: " + d.id + "<br>name:");
     })
 });
+
+function showinfo(str) {
+    var infoob = document.getElementById("info");
+    infoob.innerHTML = str;
+}
 
 function redrawGraph() {
 
@@ -77,6 +84,7 @@ function redrawGraph() {
         .attr("class", "link")
         .attr("id", function(d) { return "id" + d.source.id + "_" + d.target.id; })
         .attr("stroke-opacity", function(d) { return 1; })
+        .attr("stroke", "#000")
         .attr("stroke-width", function(d) { return strokewidth; });
 
     node = svg.selectAll(".node");
@@ -95,8 +103,8 @@ function redrawGraph() {
 function removeAndRedraw() {
     simulation.stop();
 
-    svg.selectAll(".node").remove();
-    svg.selectAll(".link").remove();
+    svg.selectAll("circle").remove();
+    svg.selectAll("line").remove();
 
     link = svg.selectAll("line")
         .data(linkdata)
@@ -104,6 +112,7 @@ function removeAndRedraw() {
         .attr("class", "link")
         .attr("id", function(d) { return "id" + d.source + "_" + d.target; })
         .attr("stroke-opacity", function(d) { return 1; })
+        .attr("stroke", "#000")
         .attr("stroke-width", function(d) { return strokewidth; }); //Math.sqrt(d.value); });
 
     node = svg.selectAll("circle")
@@ -117,6 +126,19 @@ function removeAndRedraw() {
             .on("start", dragstarted)
             .on("drag", dragged)
             .on("end", dragended));
+    node.on("click", function(d) {
+        console.log("on click" + d.id);
+        dijkstraApp.setTwoNodes(d.id);
+        showinfo("Node Info:<br>id: " + d.id + "<br>name:");
+    })
+
+    simulation = d3.forceSimulation()
+        .force("forceX", d3.forceX().strength(.35).x(width * .5))
+        .force("forceY", d3.forceY().strength(.35).y(height * .5))
+        .force("link", d3.forceLink().id(function(d) { return d.id; }))
+        .force("charge", d3.forceManyBody())
+        .force("center", d3.forceCenter(width / 2, height / 2));
+
     simulation
         .nodes(nodedata)
         .on("tick", ticked);
@@ -177,35 +199,36 @@ function changeNodeColor(id, centerality) {
 
 function clearAllLinks() {
     svg.selectAll(".link").remove();
-    linkdata=[];
+    linkdata = [];
     redrawGraph();
 }
 
 function clearAllNodeColor() {
-    svg.selectAll(".node").attr("fill",color(1));
+    svg.selectAll(".node").attr("fill", color(1));
 }
 
 function changeNodeSize(_r) {
-    r=_r;
+    r = _r;
     removeAndRedraw();
 }
 
 function changeLinkSize(_stroke) {
-    strokewidth=_stroke;
+    strokewidth = _stroke;
     removeAndRedraw();
 }
 
 function resetAll() {
-    if(working)
+    if (working)
         return;
-    r=1.5;
-    strokewidth=0.5;
-    linkdata=[];
+    r = 1.5;
+    strokewidth = 0.5;
+    linkdata = [];
+    color = d3.scaleOrdinal(d3.schemeCategory20);
     removeAndRedraw();
-    var numberform = document.getElementById("inputnumber");
-    numberform.elements[0].value=numberform.elements[1].value="";
+    // var numberform = document.getElementById("inputnumber");
+    // numberform.elements[0].value=numberform.elements[1].value="";
 }
 
 function cancelAll() {
-    stopflag=true;
+    stopflag = true;
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="./css/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -25,6 +25,7 @@ h6,
 <body class="w3-content" style="max-width:1200px">
     <nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:250px" id="mySidebar">
         <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
+
             <button onclick="showDijkstra()" class="w3-button">Dijkstra<i class="fa fa-caret-down"></i></button>
             <br>
             <div id="dijkstraContent" class="w3-bar-block w3-hide w3-padding-large w3-medium" style="font-weight:bold">
@@ -35,21 +36,56 @@ h6,
                     <input type="text" name="second number">
                     <br>
                 </form>
-                <button onclick="dijkstraApp.dijkstraButtonClk()" class="w3-button">Dijkstra</button>
+                <button onclick="dijkstraApp.dijkstraButtonClk()" class="w3-button">Slow</button>
+                <button onclick="dijkstraApp.dijkstraFastButtonClk()" class="w3-button">Fast</button>
                 <p id="dijkstraresult"></p>
             </div>
-            <button onclick="primApp.primButtonClk()" class="w3-button">Prim</button>
+
+            <button onclick="showPrim()" class="w3-button">Prim<i class="fa fa-caret-down"></i></button>
             <br>
-            <button onclick="kruskalApp.kruskalButtonClk()" class="w3-button">Kruskal</button>
+            <div id="primContent" class="w3-bar-block w3-hide w3-padding-large w3-medium" style="font-weight:bold">
+                <form id="rootnumber">
+                    Root:
+                    <input type="text" name="first number">
+                    <br>
+                </form>
+                <button onclick="primApp.primButtonClk()" class="w3-button">Slow</button>
+                <button onclick="primApp.primFastButtonClk()" class="w3-button">Fast</button>
+            </div>
+
+            <button onclick="showKruskal()" class="w3-button">Kruskal<i class="fa fa-caret-down"></i></button>
             <br>
+            <div id="KruskalContent" class="w3-bar-block w3-hide w3-padding-large w3-medium" style="font-weight:bold">
+                <button onclick="kruskalApp.kruskalButtonClk()" class="w3-button">Slow</button>
+                <button onclick="kruskalApp.kruskalFastButtonClk()" class="w3-button">Fast</button>
+            </div>
+
             <button onclick="betweenCenteralityApp.betweennessCenteralityButtonClk()" class="w3-button">BC</button>
             <br>
             <button onclick="closenessCenteralityApp.closenessCenteralityButtonClk()" class="w3-button">CC</button>
             <br>
+            <button onclick="showConnectivity()" class="w3-button">Connectivity<i class="fa fa-caret-down"></i></button>
+            <br>
+            <div id="connectivityContent" class="w3-bar-block w3-hide w3-padding-large w3-medium" style="font-weight:bold">
+                <form id="TSnumber">
+                    Threshold:
+                    <input type="text" name="first number">
+                    <br> Query Id:
+                    <input type="text" name="second number">
+                    <br>
+                </form>
+                <button onclick="connectivityApp.initGraph()" class="w3-button">Initialize</button>
+                <button onclick="connectivityApp.drawGraph()" class="w3-button">Redraw</button>
+                <button onclick="connectivityApp.queryNode()" class="w3-button">Query</button>
+            </div>
+
             <button onclick="resetAll()" class="w3-button">Reset</button>
             <br>
             <button onclick="cancelAll()" class="w3-button">Cancel</button>
             <br>
+        </div>
+        <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
+            <p id="info"></p>
         </div>
     </nav>
     <div class="w3-main" style="margin-left:250px">
@@ -65,9 +101,34 @@ h6,
 <script src="kruskal.js"></script>
 <script src="betweennessCenterality.js"></script>
 <script src="closenessCenterality.js"></script>
+<script src="connectivity.js"></script>
 <script>
 function showDijkstra() {
     var x = document.getElementById("dijkstraContent");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else {
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+function showPrim() {
+    var x = document.getElementById("primContent");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else {
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+function showKruskal() {
+    var x = document.getElementById("KruskalContent");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else {
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+function showConnectivity() {
+    var x = document.getElementById("connectivityContent");
     if (x.className.indexOf("w3-show") == -1) {
         x.className += " w3-show";
     } else {

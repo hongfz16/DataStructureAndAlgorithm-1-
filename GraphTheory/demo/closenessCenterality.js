@@ -1,6 +1,6 @@
 var closenessCenteralityApp = {
     nnum: 0,
-    filename: ref.allocCString(randomtxtfilename),
+    filename: ref.allocCString(filmtxtfilename),
     graph_ptr:0,
     nodeCenteralityArray:0,
 
@@ -9,6 +9,7 @@ var closenessCenteralityApp = {
     },
 
     closenessCenteralityButtonClk: async function() {
+        resetAll();
         if(working)
             return;
         working=true;

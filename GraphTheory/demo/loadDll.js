@@ -41,5 +41,8 @@ var graphlib = ffi.Library('./native/main', {
     'betweennessCentrality': [ref.types.void, [graphinfoptr, intArray]],
     'closenesscentrality': [ref.types.void, [graphinfoptr,intArray]],
     'connectivityQuery': [ref.types.bool, [graphinfoptr,'int','int','int']],
-    'connectivityInit': [ref.types.void, [graphinfoptr]]
+    'connectivityInit': [ref.types.void, [graphinfoptr]],
+    'connectivityCount': ['int',[graphinfoptr,'int']],
+    'connectivitySize': ['int',[graphinfoptr,'int','int']],
+    'connectivityRep': ['int',[graphinfoptr,'int','int']]
 });

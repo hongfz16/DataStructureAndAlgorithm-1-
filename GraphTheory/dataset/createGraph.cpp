@@ -174,7 +174,7 @@ void createUserGraph(vector<user>& userlist,string filename,string jsonfilename)
 void createFilmGraph(vector<film>& filmlist,string filename,string jsonfilename)
 {
 	ofstream fout(filename);
-	fout<<filmlist.size()<<" "<<"####"<<endl;
+	fout<<filmlist.size()<<" "<<"#####"<<endl;
 	ofstream jsonfout(jsonfilename);
 	jsonfout<<"{"<<endl<<"	\"nodes\": ["<<endl;
 	int vcount=0;

@@ -74,6 +74,7 @@ var dijkstraApp = {
     },
 
     dijkstraButtonClk: async function() {
+        resetAll();
         stopflag=false;
         if (working)
             return;
@@ -89,7 +90,7 @@ var dijkstraApp = {
         if (!this.getDijkstraInfo())
             return;
 
-        clearAllLinks();
+        //clearAllLinks();
 
         //console.log(this.dijkstrasource,this.dijkstratarget);
 
@@ -112,4 +113,44 @@ var dijkstraApp = {
         this.destroyAll();
         //console.log("here");
     },
+    dijkstraFastButtonClk: async function() {
+        resetAll();
+        stopflag=false;
+        if (working)
+            return;
+        working = true;
+
+        this.dijkstrasource=this.dijkstratarget=0;
+        this.nnum = graphsize;
+        this.dist_ptr = new intArray(this.nnum);
+        this.prevarray = new edgeinfoArray(this.nnum);
+        this.graph_ptr=graphlib.createGraph_s(this.filename);
+        this.edgeinfo_ptr=graphlib.createEdgeInfo(0, 0, 0);
+
+        if (!this.getDijkstraInfo())
+            return;
+
+        //clearAllLinks();
+
+        //console.log(this.dijkstrasource,this.dijkstratarget);
+
+        for (var i = 0; i < this.nnum; ++i) {
+            if (stopflag)
+            {
+                this.destroyAll();
+                working=false;
+                return;
+            }
+            if (graphlib.dijkstraStep(this.graph_ptr, i, this.dijkstrasource, this.dist_ptr, this.edgeinfo_ptr, this.prevarray) == -1)
+                break;
+            //changeLinkColor(this.edgeinfo_ptr.deref().u, this.edgeinfo_ptr.deref().v);
+            //await sleep(this.internal);
+        }
+        this.revealResult(this.dist_ptr[this.dijkstratarget]);
+
+        working = false;
+
+        this.destroyAll();
+        //console.log("here");
+    }
 }

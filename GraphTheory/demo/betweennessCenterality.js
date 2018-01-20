@@ -1,6 +1,6 @@
 var betweenCenteralityApp = {
     nnum: 0,
-    filename: ref.allocCString(randomtxtfilename),
+    filename: ref.allocCString(filmtxtfilename),
     graph_ptr:0,
     nodeCenteralityArray:0,
 
@@ -9,6 +9,7 @@ var betweenCenteralityApp = {
     },
 
     betweennessCenteralityButtonClk: async function() {
+        resetAll();
     	if(working)
     		return;
     	working=true;
