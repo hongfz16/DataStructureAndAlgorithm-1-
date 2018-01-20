@@ -41,7 +41,7 @@ var dijkstraApp = {
         if (sourceandtarget[0] == -1)
             return false;
         for(var i=0;i<2;++i) {
-            console.log(sourceandtarget[i]);
+            //console.log(sourceandtarget[i]);
             if(sourceandtarget[i]<0 || sourceandtarget[i]>=this.nnum)
                 return false;
         }
@@ -90,6 +90,8 @@ var dijkstraApp = {
             return;
 
         clearAllLinks();
+
+        //console.log(this.dijkstrasource,this.dijkstratarget);
 
         for (var i = 0; i < this.nnum; ++i) {
             if (stopflag)

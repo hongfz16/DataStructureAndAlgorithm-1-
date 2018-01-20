@@ -10,7 +10,7 @@ namespace SI
 	{
 	private:
 		PerArray<int> fath;
-		PerArray<int> rank;
+		PerArray<int> size;
 		PerArray<int> cnt;
 	public:
 		Persistence_UnionFind(int tn = 0, int tq = 0);
@@ -20,6 +20,7 @@ namespace SI
 		void resume(int k);
 		int sizeq();
 		int count(int k);
+		int getsize(int k,int u);
 		~Persistence_UnionFind();
 	};
 }

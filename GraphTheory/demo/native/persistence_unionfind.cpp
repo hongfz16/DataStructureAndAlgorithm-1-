@@ -2,7 +2,7 @@
 
 namespace SI
 {
-	Persistence_UnionFind::Persistence_UnionFind(int tn, int tq) :fath(tn, tq), rank(tn, tq), cnt(1, tq)
+	Persistence_UnionFind::Persistence_UnionFind(int tn, int tq) :fath(tn, tq), size(tn, tq), cnt(1, tq)
 	{
 		int *temp = new int[tn];
 		for (int i = 0; i < tn; ++i)
@@ -10,7 +10,7 @@ namespace SI
 		fath.init(temp, tn);
 		for (int i = 0; i < tn; ++i)
 			temp[i] = 1;
-		rank.init(temp, tn);
+		size.init(temp, tn);
 		temp[0] = tn;
 		cnt.init(temp, 1);
 	}
@@ -24,8 +24,8 @@ namespace SI
 	{
 		fath.destroy();
 		fath.allocBuffer(tn, tq);
-		rank.destroy();
-		rank.allocBuffer(tn, tq);
+		size.destroy();
+		size.allocBuffer(tn, tq);
 		cnt.destroy();
 		cnt.allocBuffer(1, tq);
 	}
@@ -46,23 +46,25 @@ namespace SI
 		if (!(u^v))
 		{
 			fath.nopmodify();
-			rank.nopmodify();
+			size.nopmodify();
 			cnt.nopmodify();
 			return;
 		}
-		int rku = rank.at(lastm, u);
-		int rkv = rank.at(lastm, v);
+		int rku = size.at(lastm, u);
+		int rkv = size.at(lastm, v);
 		if (rku >= rkv)
 		{
 			fath.modify(v, u);
-			if (!(rku^rkv))
-				rank.modify(u, rku + 1);
-			else rank.nopmodify();
+		//	if (!(rku^rkv))
+		//		size.modify(u, rku + 1);
+		//	else size.nopmodify();
+			size.modify(u, rku + rkv);
 		}
 		else
 		{
 			fath.modify(u, v);
-			rank.nopmodify();
+			//size.nopmodify();
+			size.modify(v, rku + rkv);
 		}
 		cnt.modify(0, cnt.at(cnt.sizeq() - 1, 0) - 1);
 	}
@@ -70,13 +72,18 @@ namespace SI
 	void Persistence_UnionFind::resume(int k)
 	{
 		fath.resume(k);
-		rank.resume(k);
+		size.resume(k);
 		cnt.resume(k);
 	}
 
 	Persistence_UnionFind::~Persistence_UnionFind()
 	{
 
+	}
+
+	int Persistence_UnionFind::getsize(int k,int u)
+	{
+		return size.at(k, u);
 	}
 
 	int Persistence_UnionFind::sizeq()

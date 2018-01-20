@@ -25,29 +25,29 @@ using Graph = SI::SIGraph<EdgeInfo, VertexInfo>;
 
 extern "C" {
 
-	Graph* createGraph_n(int n)
+	DllExport Graph* createGraph_n(int n)
 	{
 		Graph* pG = new Graph(n);
 		return pG;
 	}
 
-	void destroyGraph(Graph* pG)
+	DllExport void destroyGraph(Graph* pG)
 	{
 		if (pG != NULL) delete pG;
 	}
 
-	EdgeInfo* createEdgeInfo(int u = 0, int v = 0, int w = 0)
+	DllExport EdgeInfo* createEdgeInfo(int u = 0, int v = 0, int w = 0)
 	{
 		EdgeInfo* pE = new EdgeInfo(u, v, w);
 		return pE;
 	}
 
-	void destroyEdgeInfo(EdgeInfo* pE)
+	DllExport void destroyEdgeInfo(EdgeInfo* pE)
 	{
 		if(pE!=NULL) delete pE;
 	}
 
-	Graph* createGraph_s(const char* s)
+	DllExport Graph* createGraph_s(const char* s)
 	{
 		Graph* pG;
 		std::ifstream fin;
@@ -66,12 +66,12 @@ extern "C" {
 		return pG;
 	}
 
-	int dijkstraStep(Graph* pG, int stp, int u, int* dist, EdgeInfo* pE,EdgeInfo* pprev)
+	DllExport int dijkstraStep(Graph* pG, int stp, int u, int* dist, EdgeInfo* pE,EdgeInfo* pprev)
 	{
 		return pG->dijkstraStep(stp, u, dist, pE, pprev);
 	}
 
-	int dijkstra(Graph* pG, int u, int* dist, Graph* pSG = NULL)
+	DllExport int dijkstra(Graph* pG, int u, int* dist, Graph* pSG = NULL)
 	{
 		return pG->dijkstra(u, dist, pSG);
 	}
@@ -82,7 +82,7 @@ extern "C" {
 	@param [out] pSG ptr_to_MST
 	@retval the tot length of edges in MST
 	*/
-	int prim(Graph* pG, int u, Graph* pSG = NULL)
+	DllExport int prim(Graph* pG, int u, Graph* pSG = NULL)
 	{
 		return pG->prim(u, pSG);
 	}
@@ -91,7 +91,7 @@ extern "C" {
 	@param [in] stp step
 	@param [out] pE the_selected_edge_in_this_step
 	*/
-	int primStep(Graph* pG, int stp, int u, EdgeInfo* pE)
+	DllExport int primStep(Graph* pG, int stp, int u, EdgeInfo* pE)
 	{
 		return pG->primStep(stp, u, pE);
 	}
@@ -102,7 +102,7 @@ extern "C" {
 	@retval S the tot length of edges in MST
 	@retval -1 failed
 	*/
-	int kruskal(Graph* pG, Graph* pgraph = NULL)
+	DllExport int kruskal(Graph* pG, Graph* pgraph = NULL)
 	{
 		return pG->Kruskal(pgraph);
 	}
@@ -113,7 +113,7 @@ extern "C" {
 	@retval true success
 	@retval false failed
 	*/
-	bool kruskalStep(Graph* pG, int stp, EdgeInfo* pE)
+	DllExport bool kruskalStep(Graph* pG, int stp, EdgeInfo* pE)
 	{
 		return pG->KruskalStep(stp, pE);
 	}
@@ -122,22 +122,38 @@ extern "C" {
 	@param [in] pG ptr_to_graph
 	@param [out] c the_ith_element_is_the_centerality_of_the_ith_vertex
 	*/
-	void betweennessCentrality(Graph* pG, int* c)
+	DllExport void betweennessCentrality(Graph* pG, int* c)
 	{
 		return pG->betweennessCentrality(c);
 	}
 
-	void connectivityInit(Graph* pG)
+	DllExport void connectivityInit(Graph* pG)
 	{
 		pG->connectivityInit();
 	}
 
-	bool connectivityQuery(Graph* pG, int u, int v, int ST)
+	DllExport bool connectivityQuery(Graph* pG, int u, int v, int ST)
 	{
 		return pG->connectivityQuery(u, v, ST);
 	}
 
-	void closenesscentrality(Graph* pG, int *c)
+	DllExport int connectivityCount(Graph* pG, int ST)
+	{
+		return pG->connectivityCount(ST);
+	}
+
+	DllExport int connectivitySize(Graph* pG,int u, int ST)
+	{
+		return pG->connectivitySize(u, ST);
+	}
+
+	DllExport int connectivityRep(Graph* pG, int u, int ST)
+	{
+		return pG->connectivityRep(u, ST);
+	}
+
+
+	DllExport void closenesscentrality(Graph* pG, int *c)
 	{
 		pG->closenesscentrality(c);
 	}

@@ -209,7 +209,7 @@ void createFilmGraph(vector<film>& filmlist,string filename,string jsonfilename)
 				else
 					++jj;
 			}
-			if(samecount>15)
+			if(samecount>2)
 			{
 				if(vcount!=0)
 					jsonfout<<","<<endl;
