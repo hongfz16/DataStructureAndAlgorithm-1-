@@ -1,20 +1,77 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-
-.links line {
-  stroke-opacity: 0.6;
+.w3-sidebar a {
+    font-family: "Roboto", sans-serif
 }
 
-.nodes circle {
-  stroke: #fff;
-  stroke-width: 1.5px;
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.w3-wide {
+    font-family: "Montserrat", sans-serif;
 }
-
 </style>
-<svg width="960" height="600"></svg>
-<script src="https://d3js.org/d3.v4.min.js"></script>
-<script src="./importdylib.js"></script>
-<body>
-	<button onclick="bclk()">clickme</button>
+
+<body class="w3-content" style="max-width:1200px">
+    <nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:250px" id="mySidebar">
+        <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
+            <button onclick="showDijkstra()" class="w3-button">Dijkstra<i class="fa fa-caret-down"></i></button>
+            <br>
+            <div id="dijkstraContent" class="w3-bar-block w3-hide w3-padding-large w3-medium" style="font-weight:bold">
+                <form id="inputnumber">
+                    Source:
+                    <input type="text" name="first number">
+                    <br> Target:
+                    <input type="text" name="second number">
+                    <br>
+                </form>
+                <button onclick="dijkstraApp.dijkstraButtonClk()" class="w3-button">Dijkstra</button>
+                <p id="dijkstraresult"></p>
+            </div>
+            <button onclick="primApp.primButtonClk()" class="w3-button">Prim</button>
+            <br>
+            <button onclick="kruskalApp.kruskalButtonClk()" class="w3-button">Kruskal</button>
+            <br>
+            <button onclick="betweenCenteralityApp.betweennessCenteralityButtonClk()" class="w3-button">BC</button>
+            <br>
+            <button onclick="closenessCenteralityApp.closenessCenteralityButtonClk()" class="w3-button">CC</button>
+            <br>
+            <button onclick="resetAll()" class="w3-button">Reset</button>
+            <br>
+            <button onclick="cancelAll()" class="w3-button">Cancel</button>
+            <br>
+        </div>
+    </nav>
+    <div class="w3-main" style="margin-left:250px">
+        <svg width="900" height="700"></svg>
+    </div>
 </body>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="include.js"></script>
+<script src="loadDll.js"></script>
+<script src="d3Graph.js"></script>
+<script src="dijkstra.js"></script>
+<script src="prim.js"></script>
+<script src="kruskal.js"></script>
+<script src="betweennessCenterality.js"></script>
+<script src="closenessCenterality.js"></script>
+<script>
+function showDijkstra() {
+    var x = document.getElementById("dijkstraContent");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else {
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+</script>>

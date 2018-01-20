@@ -1,3 +1,18 @@
+#if defined(_WIN32)
+#define DllExport   __declspec(dllexport)
+#else
+#define DllExport
+#endif
+
+//#include
+//#include "json.hpp"
+//#include "GerwGraph.h"
+//#include "Utility.h"
+//#include <fstream>
+//#include <iostream>
+//#include "ConnectedComponent.h"
+//using json = nlohmann::json;
+//using namespace std;
 #include"siglobal.h"
 #include"sigraph.h"
 #include"EdgeInfo.h"
@@ -9,26 +24,29 @@ using Edge = SI::EdgeNode<EdgeInfo>;
 using Graph = SI::SIGraph<EdgeInfo, VertexInfo>;
 
 extern "C" {
-#define EXPORT __attribute__((visibility("default")))
-EXPORT
+
 	Graph* createGraph_n(int n)
 	{
 		Graph* pG = new Graph(n);
 		return pG;
 	}
+
 	void destroyGraph(Graph* pG)
 	{
 		if (pG != NULL) delete pG;
 	}
+
 	EdgeInfo* createEdgeInfo(int u = 0, int v = 0, int w = 0)
 	{
 		EdgeInfo* pE = new EdgeInfo(u, v, w);
 		return pE;
 	}
+
 	void destroyEdgeInfo(EdgeInfo* pE)
 	{
 		if(pE!=NULL) delete pE;
 	}
+
 	Graph* createGraph_s(const char* s)
 	{
 		Graph* pG;
@@ -44,101 +62,83 @@ EXPORT
 		{
 			fin >> ei;
 			pG->addPath(ei);
-			ei.u^=ei.v^=ei.u^=ei.v;
-			pG->addPath(ei);
 		}
 		return pG;
 	}
-	void dijkstraStep(Graph* pG, int stp, int u, int* dist, EdgeInfo* pE)
+
+	int dijkstraStep(Graph* pG, int stp, int u, int* dist, EdgeInfo* pE,EdgeInfo* pprev)
 	{
-		pG->dijkstraStep(stp, u, dist, pE);
+		return pG->dijkstraStep(stp, u, dist, pE, pprev);
 	}
-	void dijkstra(Graph* pG, int u, int* dist, Graph* pSG = NULL)
+
+	int dijkstra(Graph* pG, int u, int* dist, Graph* pSG = NULL)
 	{
-		pG->dijkstra(u, dist, pSG);
+		return pG->dijkstra(u, dist, pSG);
 	}
-	//DllExport const char* get_str(const char* str) {
-	//	return str;
-	//}
-	//DllExport void free_str(const char* str) {
-	//	delete[] str;
-	//}
-	//DllExport const char* load_graph() {
-	//	GerwGraph g;
-	//	g.load_csv();
-	//	json graph_json = g.to_simple_json();
-	//	json res{
-	//		{"okay",true},
-	//		{"result",std::move(graph_json)}
-	//	};
-	//	return heap_str(res.dump());
-	//}
-	//DllExport const char* get_display(const char* graph_str) {
-	//	GerwGraph g;
-	//	g.from_simple_json(json::parse(graph_str));
-	//	json res{
-	//		{"okay",true},
-	//		{"result",std::move(g.to_display_json())}
-	//	};
-	//	return heap_str(res.dump());
-	//}
-	//DllExport const char* connected_component(const char* graph_str, int threshold) {
-	//	ConnectedComponent cc;
-	//	cc.from_simple_json(json::parse(graph_str));
-	//	json res{
-	//		{"okay",true},
-	//		{"result",std::move(cc.solve(threshold))}
-	//	};
-	//	return heap_str(res.dump());
-	//}
-	//DllExport const char* Centrality(const char* graph_str) {
-	//	GerwGraph g;
-	//	g.from_simple_json(json::parse(graph_str));
-	//	g.Centrality();
-	//	json res{
-	//		{ "okay", true },
-	//		{ "result", std::move(g.to_display_json()) }
-	//	};
-	//	return heap_str(res.dump());
-	//}
-	//DllExport const char* Single_Source_Shortest_Path(const char* graph_str, const char* S, const char* T) {
-	//	GerwGraph g;
-	//	g.from_simple_json(json::parse(graph_str));
-	//	std::string msg;
-	//	std::string s(S);
-	//	std::string t(T);
-	//	/*
-	//	ofstream fout("a.out");
-	//	for (auto& tmp : g.movieID) {
-	//		fout << tmp.first << endl;
-	//	}
-	//	fout.close();
-	//	*/
-	//	int Sid = g.get_movie_id(s);
-	//	int Tid = g.get_movie_id(t);
-	//	//cout << s << " " << t << endl;
-	//	//cout << Sid << " " << Tid << endl;
-	//	int d = g.Single_Source_Shortest_Path(Sid, Tid, msg);
-	//	std::string distance(d==Graph::INF?"infinite":std::to_string(d));
-	//	json tmp(g.to_display_json());
-	//	tmp["display"] = msg;
-	//	tmp["distance"] = distance;
-	//	json res{
-	//		{ "okay", true },
-	//		{ "result", std::move(tmp) }
-	//	};
-	//	return heap_str(res.dump());
-	//}
-	//DllExport const char* Minimum_Spanning_Tree(const char* graph_str) {
-	//	GerwGraph g;
-	//	g.from_simple_json(json::parse(graph_str));
-	//	int sum = g.Minimum_Spanning_Tree();
-	//	json tmp(g.to_display_json());
-	//	tmp["sum"] = sum;
-	//	json res{
-	//		{ "okay", true },
-	//		{ "result", std::move(tmp) }
-	//	};
-	//	return heap_str(res.dump());
-	//}
+
+	/**
+	@param [in] pG ptr_to_graph
+	@param [in] u start_vertex
+	@param [out] pSG ptr_to_MST
+	@retval the tot length of edges in MST
+	*/
+	int prim(Graph* pG, int u, Graph* pSG = NULL)
+	{
+		return pG->prim(u, pSG);
+	}
+
+	/**
+	@param [in] stp step
+	@param [out] pE the_selected_edge_in_this_step
+	*/
+	int primStep(Graph* pG, int stp, int u, EdgeInfo* pE)
+	{
+		return pG->primStep(stp, u, pE);
+	}
+
+	/**
+	@param [in] pG ptr_to_graph
+	@param [out] pSG ptr_to_MST
+	@retval S the tot length of edges in MST
+	@retval -1 failed
+	*/
+	int kruskal(Graph* pG, Graph* pgraph = NULL)
+	{
+		return pG->Kruskal(pgraph);
+	}
+
+	/**
+	@param[in] stp step
+	@param[out] pE the_selected_edge_in_this_step
+	@retval true success
+	@retval false failed
+	*/
+	bool kruskalStep(Graph* pG, int stp, EdgeInfo* pE)
+	{
+		return pG->KruskalStep(stp, pE);
+	}
+	
+	/**
+	@param [in] pG ptr_to_graph
+	@param [out] c the_ith_element_is_the_centerality_of_the_ith_vertex
+	*/
+	void betweennessCentrality(Graph* pG, int* c)
+	{
+		return pG->betweennessCentrality(c);
+	}
+
+	void connectivityInit(Graph* pG)
+	{
+		pG->connectivityInit();
+	}
+
+	bool connectivityQuery(Graph* pG, int u, int v, int ST)
+	{
+		return pG->connectivityQuery(u, v, ST);
+	}
+
+	void closenesscentrality(Graph* pG, int *c)
+	{
+		pG->closenesscentrality(c);
+	}
 }

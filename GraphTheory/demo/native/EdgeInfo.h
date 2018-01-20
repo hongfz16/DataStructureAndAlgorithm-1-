@@ -11,6 +11,7 @@ namespace SI
 		int u;
 		int v;
 		int w;
+		void setInfo(int ts = -1, int te = -1, int tw = 0);
 		EdgeInfo(int ts = -1, int te = -1, int tw = 0);
 		int length() const;
 		int start() const;

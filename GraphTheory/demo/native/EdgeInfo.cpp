@@ -6,6 +6,10 @@ namespace SI
 	{
 
 	}
+	void EdgeInfo::setInfo(int ts, int te, int tw)
+	{
+		u = ts; v = te; w = tw;
+	}
 	int EdgeInfo::length() const
 	{
 		return w;

@@ -13,7 +13,7 @@
 
 namespace SI
 {
-	const int INF = 1 << 29;
+	const int INF = 1 << 20;
 	
 	template<class T>
 	T Min(const T& a, const T& b)
