@@ -56,8 +56,13 @@ d3.json(filmjsonfilename, function(error, graph) {
     node.on("click", function(d) {
         console.log("on click" + d.id);
         dijkstraApp.setTwoNodes(d.id);
-        showinfo("Node Info:<br>id: " + d.id + "<br>name:");
-    })
+        var infostr="Node Info:<br>id: " + d.id + "<br>name: "+nodedata[parseInt(d.id)].name;
+        if(betweenCenteralityApp.nodeCenteralityArray!=0)
+            infostr+=("<br>BC: "+betweenCenteralityApp.nodeCenteralityArray[parseInt(d.id)]);
+        if(closenessCenteralityApp.nodeCenteralityArray!=0)
+            infostr+=("<br>CC: "+closenessCenteralityApp.nodeCenteralityArray[parseInt(d.id)]);
+        showinfo(infostr);
+    });
 });
 
 function showinfo(str) {
@@ -128,10 +133,17 @@ function removeAndRedraw() {
             .on("start", dragstarted)
             .on("drag", dragged)
             .on("end", dragended));
+    
     node.on("click", function(d) {
         console.log("on click" + d.id);
         dijkstraApp.setTwoNodes(d.id);
-        showinfo("Node Info:<br>id: " + d.id + "<br>name:");
+        var infostr="Node Info:<br>id: " + d.id + "<br>name: "+nodedata[parseInt(d.id)].name;
+        if(betweenCenteralityApp.nodeCenteralityArray!=0)
+            infostr+=("<br>BC: "+betweenCenteralityApp.nodeCenteralityArray[parseInt(d.id)]);
+        if(closenessCenteralityApp.nodeCenteralityArray!=0)
+            infostr+=("<br>CC: "+closenessCenteralityApp.nodeCenteralityArray[parseInt(d.id)]);
+        showinfo(infostr);
+        console.log(parseInt(d.id));
     })
 
     simulation = d3.forceSimulation()

@@ -25,12 +25,14 @@ var betweenCenteralityApp = {
             if (this.nodeCenteralityArray[i] < min)
                 min = this.nodeCenteralityArray[i];
         }
+        min=Math.atan(min);
+        max=Math.atan(max);
         color = d3.scaleLinear().domain([min, max])
             .interpolate(d3.interpolateHcl)
             .range([d3.rgb("#007AFF"), d3.rgb('#FFF500')]);
 
         for (var i = 0; i < this.nnum; ++i) {
-            changeNodeColor(i, this.nodeCenteralityArray[i]);
+            changeNodeColor(i, Math.atan(this.nodeCenteralityArray[i]));
         }
         this.destroyAll();
         working=false;
