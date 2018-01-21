@@ -79,6 +79,18 @@ h6,
                 <button onclick="connectivityApp.queryNode()" class="w3-button">Query</button>
             </div>
 
+            <button onclick="showConnectivityRe()" class="w3-button">ConnectivityRe<i class="fa fa-caret-down"></i></button>
+            <br>
+            <div id="connectivityReContent" class="w3-bar-block w3-hide w3-padding-large w3-medium" style="font-weight:bold">
+                <form id="TSRenumber">
+                    Threshold:
+                    <input type="text" name="first number">
+                    <br>
+                </form>
+                <button onclick="connectivityReApp.initGraph()" class="w3-button">Initialize</button>
+                <button onclick="connectivityReApp.drawGraph()" class="w3-button">Redraw</button>
+            </div>
+
             <button onclick="resetAll()" class="w3-button">Reset</button>
             <br>
             <button onclick="cancelAll()" class="w3-button">Cancel</button>
@@ -129,6 +141,14 @@ function showKruskal() {
 }
 function showConnectivity() {
     var x = document.getElementById("connectivityContent");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else {
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+function showConnectivityRe() {
+    var x = document.getElementById("connectivityReContent");
     if (x.className.indexOf("w3-show") == -1) {
         x.className += " w3-show";
     } else {

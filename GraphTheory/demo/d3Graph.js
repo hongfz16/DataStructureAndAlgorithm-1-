@@ -12,6 +12,7 @@ var simulation = d3.forceSimulation()
     .force("center", d3.forceCenter(width / 2, height / 2));
 
 var graphsize = 0;
+var vsize=0;
 var linkdata = [];
 var nodedata = [];
 var link;
@@ -23,6 +24,7 @@ d3.json(filmjsonfilename, function(error, graph) {
     if (error) throw error;
     nodedata = graph.nodes;
     graphsize = graph.nodes.length;
+    vsize=graph.links.length;
 
     link = svg.selectAll("line")
         .data(linkdata)

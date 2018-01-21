@@ -27,7 +27,7 @@ var kruskalApp = {
                 working=false;
                 return;
             }
-            if(!graphlib.kruskalStep(this.graph_ptr, i, this.edgeinfo_ptr))
+            if(!graphlib.kruskalStep(this.graph_ptr, i, this.edgeinfo_ptr,1))
             	break;
             changeLinkColor(this.edgeinfo_ptr.deref().u, this.edgeinfo_ptr.deref().v);
             await sleep(this.internal);
@@ -53,7 +53,7 @@ var kruskalApp = {
                 working=false;
                 return;
             }
-            if(!graphlib.kruskalStep(this.graph_ptr, i, this.edgeinfo_ptr))
+            if(!graphlib.kruskalStep(this.graph_ptr, i, this.edgeinfo_ptr,1))
                 break;
             //changeLinkColor(this.edgeinfo_ptr.deref().u, this.edgeinfo_ptr.deref().v);
             //await sleep(this.internal);

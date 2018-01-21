@@ -37,12 +37,13 @@ var graphlib = ffi.Library('./native/main', {
     'prim': ['int', [graphinfoptr, 'int', graphinfoptr]],
     'primStep': ['int', [graphinfoptr, 'int', 'int', edgeinfoptr]],
     'kruskal': ['int', [graphinfoptr, graphinfoptr]],
-    'kruskalStep': [ref.types.bool, [graphinfoptr, 'int', edgeinfoptr]],
+    'kruskalStep': [ref.types.bool, [graphinfoptr, 'int', edgeinfoptr,'int']],
     'betweennessCentrality': [ref.types.void, [graphinfoptr, intArray]],
     'closenesscentrality': [ref.types.void, [graphinfoptr,intArray]],
     'connectivityQuery': [ref.types.bool, [graphinfoptr,'int','int','int']],
     'connectivityInit': [ref.types.void, [graphinfoptr]],
     'connectivityCount': ['int',[graphinfoptr,'int']],
     'connectivitySize': ['int',[graphinfoptr,'int','int']],
-    'connectivityRep': ['int',[graphinfoptr,'int','int']]
+    'connectivityRep': ['int',[graphinfoptr,'int','int']],
+    'getEdges': ['int',[graphinfoptr,edgeinfoArray,'int']]
 });

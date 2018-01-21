@@ -52,6 +52,7 @@ extern "C" {
 		Graph* pG;
 		std::ifstream fin;
 		fin.open(s);
+		if (!fin) return NULL;
 		int n, m, u, v;
 		EdgeInfo ei;
 		fin >> n;
@@ -61,6 +62,8 @@ extern "C" {
 		for (fin >> m; m; --m)
 		{
 			fin >> ei;
+			pG->addPath(ei);
+			ei.u ^= ei.v ^= ei.u ^= ei.v;
 			pG->addPath(ei);
 		}
 		return pG;
@@ -93,6 +96,7 @@ extern "C" {
 	*/
 	DllExport int primStep(Graph* pG, int stp, int u, EdgeInfo* pE)
 	{
+		if (pG == NULL) return -2;
 		return pG->primStep(stp, u, pE);
 	}
 
@@ -113,9 +117,9 @@ extern "C" {
 	@retval true success
 	@retval false failed
 	*/
-	DllExport bool kruskalStep(Graph* pG, int stp, EdgeInfo* pE)
+	DllExport bool kruskalStep(Graph* pG, int stp, EdgeInfo* pE, int ST)
 	{
-		return pG->KruskalStep(stp, pE);
+		return pG->KruskalStep(stp, pE,ST);
 	}
 	
 	/**
@@ -156,5 +160,10 @@ extern "C" {
 	DllExport void closenesscentrality(Graph* pG, int *c)
 	{
 		pG->closenesscentrality(c);
+	}
+
+	DllExport int getEdges(Graph* pG, EdgeInfo* edges, int ST)
+	{
+		return pG->getEdges(edges, ST);
 	}
 }
