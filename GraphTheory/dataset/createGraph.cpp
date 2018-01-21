@@ -124,7 +124,7 @@ void createUserGraph(vector<user>& userlist,string filename,string jsonfilename)
 	int vcount=0;
 	for(int i=0;i<userlist.size();++i)
 	{
-		jsonfout<<"{\"id\":\""<<i<<"\", \"group\":"<<1<<"}";
+		jsonfout<<"{\"id\":\""<<i<<"\", \"name\": \""<<userlist[i].username<<"\", \"group\":"<<1<<"}";
 		if(i!=userlist.size()-1)
 			jsonfout<<","<<endl;
 		else
@@ -180,7 +180,7 @@ void createFilmGraph(vector<film>& filmlist,string filename,string jsonfilename)
 	int vcount=0;
 	for(int i=0;i<filmlist.size();++i)
 	{
-		jsonfout<<"{\"id\":\""<<i<<"\", \"group\":"<<1<<"}";
+		jsonfout<<"{\"id\":\""<<i<<"\", \"name\": \""<<filmlist[i].filmname<<"\", \"group\":"<<1<<"}";
 		if(i!=filmlist.size()-1)
 			jsonfout<<","<<endl;
 		else
@@ -209,7 +209,7 @@ void createFilmGraph(vector<film>& filmlist,string filename,string jsonfilename)
 				else
 					++jj;
 			}
-			if(samecount>2)
+			if(samecount>0)
 			{
 				if(vcount!=0)
 					jsonfout<<","<<endl;
